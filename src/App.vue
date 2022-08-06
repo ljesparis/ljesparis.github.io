@@ -90,8 +90,8 @@ export default defineComponent({
 .body__content p {
   padding: 0 2em 0 2em;
   font-size: 24px;
-  margin-top: 3em;
-  text-align: justify;
+  margin-top: 2.5em;
+  text-align: center;
 }
 
 
