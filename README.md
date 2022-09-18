@@ -1,3 +1,3 @@
-# ljesparis.github.io
+# ljesparis
 
-Hello!
+Hello, this is my "webpage". I am awfull at frontend development =).
