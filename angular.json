@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/ljesparis.github.io",
-            "index": "src/index.html",
+            "index": "src/index/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
@@ -42,6 +42,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "index": "src/index/prod/index.html",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
