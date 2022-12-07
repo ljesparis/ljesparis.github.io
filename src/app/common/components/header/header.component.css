@@ -1,14 +1,3 @@
-.header .header__profile-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-image: url("../../../../assets/profile-image.jpeg");
-  background-position: center center;
-  background-size: cover;
-
-  grid-area: profile-picture;
-}
-
 .header {
   grid-area: header;
 
@@ -19,12 +8,25 @@
   flex-direction: column;
 }
 
-.header .header__title {
-  font-size: 21px;
+.header .header__profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-image: url("../../../../assets/profile-image.jpeg");
+  background-position: center center;
+  background-size: cover;
+
+  grid-area: profile-picture;
+  margin-top: 40px;
+  border: 2.5px solid #7F7F7F;
 }
 
-.header .header__profile-image {
-  margin-top: 3em;
+.header .header__title {
+  font-size: 17.5px;
+}
+
+.header .header__title h1 {
+  margin-bottom: 0;
 }
 
 .header .header__social-networks {
@@ -33,7 +35,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: -1.5em;
+  margin-top: .7em;
 }
 
 .header .header__social-networks .logo {
