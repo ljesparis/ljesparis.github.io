@@ -1,0 +1,43 @@
+.header .header__profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("../../../../assets/profile-image.jpeg");
+  background-position: center center;
+  background-size: cover;
+
+  grid-area: profile-picture;
+}
+
+.header {
+  grid-area: header;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.header .header__title {
+  font-size: 21px;
+}
+
+.header .header__profile-image {
+  margin-top: 3em;
+}
+
+.header .header__social-networks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: -1.5em;
+}
+
+.header .header__social-networks .logo {
+  padding-right: .5em;
+  padding-left: .5em;
+}
+

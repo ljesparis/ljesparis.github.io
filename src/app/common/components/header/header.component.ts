@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-class SocialNetwork {
-  name!: string;
-  url!: string;
-  svg!: string;
-}
+import {SocialNetwork} from "./models/social-network";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +7,6 @@ class SocialNetwork {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
-  @Input() headerTitle!: string
-  @Input() socialNetworks!: Array<SocialNetwork>
+  @Input() headerTitle!: string;
+  @Input() socialNetworks!: Array<SocialNetwork>;
 }
