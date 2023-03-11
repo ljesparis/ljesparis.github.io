@@ -22,7 +22,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/ljesparis.github.io # The folder the action should deploy.
+          folder: dist/ # The folder the action should deploy.
           clean: true
           clean-exclude: |
             CNAME
