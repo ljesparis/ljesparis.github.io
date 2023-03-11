@@ -1,0 +1,5 @@
+User-agent: *
+
+sitemap: https://ljesparis.me/sitemap-0.xml
+sitemap: https://ljesparis.me/sitemap-index.xml
+

@@ -11,7 +11,7 @@ const externalLinks = links || [];
 	<nav>
 		<HeaderLink href="/">Home</HeaderLink>
         {externalLinks?.map((externalLink) => (
-            <HeaderLink href="{externalLink.link}" target="_blank">{externalLink.name}</HeaderLink>
+            <HeaderLink href={externalLink.link} target="_blank">{externalLink.name}</HeaderLink>
         ))}
 	</nav>
 </header>
