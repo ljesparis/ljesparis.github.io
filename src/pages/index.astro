@@ -1,0 +1,36 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+
+import {
+    SITE_TITLE,
+    SITE_HTML_TITLE,
+    SITE_DESCRIPTION,
+    SITE_EXTERNAL_LINKS
+} from '../consts';
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header title={SITE_HTML_TITLE} links={SITE_EXTERNAL_LINKS} />
+		<main>
+            <h1>Hello, dear guest 🫡 </h1>
+			<p>
+                If you've come this far, its because you want to know more about me. Which i think is pretty good =). I'm a <strong>passionate Software Developer</strong> who's very insterested in my personal and professional growths and i think i'm on my way, even if its hard. 
+			</p>
+			<p>
+                So far I've worked with companies that have a pretty decent amount of traffic, which is <strong>awesome ❤️ </strong>. As the years have gone by, it's been so exciting to get feedback on my features so quickly, so I can improve my code, my skills, among other things. The coolest thing is working with people who know so much and being able to learn from them.
+            </p>
+            <p>Please be welcome to follow me on github or connect with me on LinkedIn 😉</p>
+		</main>
+		<Footer />
+        <GoogleAnalytics />
+	</body>
+</html>
