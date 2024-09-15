@@ -9,6 +9,7 @@ const { title, routes } = Astro.props;
         {routes.map((route) => (
             <Link
                 href={route.pathOrUrl}
+                rel="nofollow"
                 target={route.isLocal? "_self": "_blank"}>
             {route.title}
             </Link>
