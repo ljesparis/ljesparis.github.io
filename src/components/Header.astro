@@ -1,17 +1,17 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-const { title, links } = Astro.props;
+import Link from './Link.astro';
+const { title, routes } = Astro.props;
 
-
-const externalLinks = links || [];
 ---
-
 <header>
 	<h2>{title}</h2>
 	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-        {externalLinks?.map((externalLink) => (
-            <HeaderLink href={externalLink.link} target="_blank">{externalLink.name}</HeaderLink>
+        {routes.map((route) => (
+            <Link
+                href={route.pathOrUrl}
+                target={route.isLocal? "_self": "_blank"}>
+            {route.title}
+            </Link>
         ))}
 	</nav>
 </header>
