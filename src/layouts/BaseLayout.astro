@@ -1,0 +1,38 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import Link from '../components/Link.astro';
+
+import {
+    SITE_TITLE,
+    SITE_HTML_TITLE,
+    SITE_DESCRIPTION,
+    ROUTES
+} from '../consts';
+
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <h1>{SITE_HTML_TITLE}</h1>
+    <nav>
+      {ROUTES.map((route) => (
+            <Link
+                href={route.pathOrUrl}
+                rel="nofollow"
+                target={route.isLocal? "_self": "_blank"}>
+            {route.title}
+            </Link>
+        ))}
+    </nav>
+    <article>
+       <slot />
+    </article>
+    <Footer />
+    <GoogleAnalytics />
+  </body>
+</html>
