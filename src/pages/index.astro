@@ -1,36 +1,14 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import GoogleAnalytics from '../components/GoogleAnalytics.astro';
-
-import {
-    SITE_TITLE,
-    SITE_HTML_TITLE,
-    SITE_DESCRIPTION,
-    ROUTES
-} from '../consts';
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-        <Header title={SITE_HTML_TITLE} routes={ROUTES} />
-		<main>
-            <h1>Hello, dear guest 🫡</h1>
-			<p>
-                Hello, and welcome! If you're here, it means you're interested in learning a bit more about me, and I truly appreciate that 😊. I'm a dedicated <strong>software developer</strong> with a passion for continuous personal and professional growth—and I feel like I'm on the right path! 🔥
-            </p>
-			<p>
-                Throughout my journey, I've had the privilege of working with high-traffic companies, which has been an amazing experience ❤️. These opportunities have helped me refine my technical expertise and take on exciting challenges that drive my passion for constant learning and improvement.
-            </p>
-            <p>If you'd like to stay connected or explore what I'm currently working on, feel free to follow me on GitHub or reach out on LinkedIn. I'd love to connect with you! 😉</p>
-		</main>
-		<Footer />
-        <GoogleAnalytics />
-	</body>
-</html>
+<BaseLayout>
+    <h1>Hello, dear guest 🫡</h1>
+    <p>
+        Hello, and welcome! If you're here, it means you're interested in learning a bit more about me, and I truly appreciate that 😊. I'm a dedicated <strong>software developer</strong> with a passion for continuous personal and professional growth—and I feel like I'm on the right path! 🔥
+    </p>
+    <p>
+        Throughout my journey, I've had the privilege of working with high-traffic companies, which has been an amazing experience ❤️. These opportunities have helped me refine my technical expertise and take on exciting challenges that drive my passion for constant learning and improvement.
+    </p>
+    <p>If you'd like to stay connected or explore what I'm currently working on, feel free to follow me on GitHub or reach out on LinkedIn. I'd love to connect with you! 😉</p>
+</BaseLayout>
