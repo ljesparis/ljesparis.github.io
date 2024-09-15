@@ -10,6 +10,7 @@ export interface Props {
 }
 
 const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!-- Global Metadata -->
@@ -19,7 +20,7 @@ const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://ljesparis.com/" />
+<link rel="canonical" href={canonicalURL} />
 
 <!-- RSS Feed Discovery -->
 <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
