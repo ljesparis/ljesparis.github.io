@@ -10,7 +10,6 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: ['en', 'es'],
         routing: {
-            // '/' serves English, '/es/' serves Spanish.
             prefixDefaultLocale: false
         }
     },

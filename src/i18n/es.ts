@@ -1,15 +1,12 @@
-// Diccionario de contenido en español.
 import type { SiteContent } from './types';
 
 export const es: SiteContent = {
-    // Metadatos SEO por página.
     meta: {
         title: 'Leonardo Esparis — Ingeniero de Software Senior',
         description:
             'Leonardo Esparis, ingeniero de software senior con más de 8 años construyendo backends: sistemas distribuidos, altamente concurrentes y orientados a eventos en Python.'
     },
 
-    // Selector de idioma (enlace al OTRO idioma).
     switchToLabel: 'English',
 
     hero: {
@@ -28,7 +25,6 @@ export const es: SiteContent = {
         ]
     },
 
-    // Oculto por ahora. Rellénalo y reactiva la sección en HomeContent.astro.
     projects: {
         heading: 'Proyectos destacados',
         items: [

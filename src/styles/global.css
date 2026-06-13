@@ -1,12 +1,3 @@
-/*
-  Global styles. Mobile-first: base rules target small screens; min-width media
-  queries scale up. Lightweight and framework-free (system fonts, no JS).
-  Color base + code/blockquote defaults originally inspired by Bear Blog (MIT).
- */
-
-/* ------------------------------------------------------------------ *
- * Design tokens
- * ------------------------------------------------------------------ */
 :root {
 	--bg: #fcfcfd;
 	--surface: #f4f4f6;
@@ -38,9 +29,6 @@
 	}
 }
 
-/* ------------------------------------------------------------------ *
- * Base
- * ------------------------------------------------------------------ */
 *,
 *::before,
 *::after {
@@ -114,9 +102,6 @@ blockquote {
 	border-radius: 4px;
 }
 
-/* ------------------------------------------------------------------ *
- * Header / navigation
- * ------------------------------------------------------------------ */
 .site-nav {
 	display: flex;
 	flex-wrap: wrap;
@@ -158,9 +143,6 @@ blockquote {
 	text-decoration: none;
 }
 
-/* ------------------------------------------------------------------ *
- * Sections
- * ------------------------------------------------------------------ */
 .section {
 	margin: 36px 0;
 }
@@ -171,24 +153,16 @@ blockquote {
 	font-size: 1.5rem;
 	margin-bottom: 12px;
 }
-/* Keep body copy at a comfortable reading measure inside the wider column. */
 .section p {
 	max-width: var(--prose);
 }
 
-/* ------------------------------------------------------------------ *
- * Hero
- * ------------------------------------------------------------------ */
 .hero {
-	/* Mobile-first and content-driven: sizes to its content (no viewport
-	   min-height, no vertical centering), so it never reserves empty space.
-	   Single column on small screens; two columns on wide screens (see below). */
 	padding: 24px 0 8px;
 }
 .hero-inner {
 	width: 100%;
 }
-/* Decorative accent panel — only shown on wide screens (see ≥900px block). */
 .hero-accent {
 	display: none;
 }
@@ -201,7 +175,6 @@ blockquote {
 	font-weight: 700;
 }
 .hero-name {
-	/* Keeps growing past mobile so the name has presence on desktop too. */
 	font-size: clamp(2.5rem, 4vw + 1rem, 4rem);
 	line-height: 1.05;
 	letter-spacing: -0.02em;
@@ -218,9 +191,6 @@ blockquote {
 	margin-top: 24px;
 }
 
-/* ------------------------------------------------------------------ *
- * Buttons
- * ------------------------------------------------------------------ */
 .btn {
 	display: inline-block;
 	padding: 12px 22px;
@@ -245,9 +215,6 @@ blockquote {
 	transform: translateY(1px);
 }
 
-/* ------------------------------------------------------------------ *
- * Projects (hidden for now — kept for when the section is re-enabled)
- * ------------------------------------------------------------------ */
 .projects-grid {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -291,9 +258,6 @@ blockquote {
 	color: var(--text);
 }
 
-/* ------------------------------------------------------------------ *
- * Scale up (tablet / desktop)
- * ------------------------------------------------------------------ */
 @media (min-width: 640px) {
 	body {
 		padding: 20px;
@@ -310,17 +274,12 @@ blockquote {
 }
 
 @media (min-width: 768px) {
-	/* More breathing room on larger screens — via padding only, never a
-	   viewport-height box, so no empty gap forms before the next section. */
 	.hero {
 		padding: 56px 0 16px;
 	}
 }
 
 @media (min-width: 900px) {
-	/* Two-column hero on wide screens: text on the left, a decorative accent
-	   panel on the right. This makes desktop use the full width intentionally
-	   instead of stranding a narrow centered column. */
 	.hero-inner {
 		display: grid;
 		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -349,9 +308,6 @@ blockquote {
 	}
 }
 
-/* ------------------------------------------------------------------ *
- * Reduced motion
- * ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

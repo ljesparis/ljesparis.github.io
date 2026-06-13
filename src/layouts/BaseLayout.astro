@@ -22,10 +22,8 @@ const t = getContent(lang);
 const title = Astro.props.title ?? t.meta.title;
 const description = Astro.props.description ?? t.meta.description;
 
-// Wordmark links to the home of the current language.
 const homePath = lang === 'en' ? '/' : '/es/';
 
-// Language switch: same page in the other language.
 const otherLang = lang === 'en' ? 'es' : 'en';
 const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
 ---
