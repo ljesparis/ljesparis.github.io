@@ -65,3 +65,202 @@ blockquote {
 	margin: 0px;
 	font-style: italic;
 }
+
+/* ------------------------------------------------------------------ *
+ * Layout & professional sections
+ * Lightweight, framework-free styles for the portfolio sections.
+ * ------------------------------------------------------------------ */
+body {
+	max-width: 50rem;
+}
+
+/* Header / navigation */
+.site-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 0 24px;
+	border-bottom: 1px solid #eee;
+	font-size: 0.95rem;
+}
+.nav-sections,
+.nav-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	align-items: center;
+}
+.site-nav a {
+	text-decoration: none;
+}
+.site-nav a:hover {
+	text-decoration: underline;
+}
+.lang-switch {
+	border: 1px solid #d4d4d4;
+	border-radius: 6px;
+	padding: 2px 10px;
+	font-weight: 600;
+}
+
+/* Sections */
+.section {
+	margin: 56px 0;
+}
+.section h2 {
+	font-size: 1.5rem;
+	margin-bottom: 16px;
+}
+
+/* Hero */
+.hero {
+	padding: 40px 0 8px;
+}
+.hero-role {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.8rem;
+	color: #3273dc;
+	margin: 0 0 4px;
+	font-weight: 700;
+}
+.hero-name {
+	font-size: 2.4rem;
+	line-height: 1.1;
+	margin: 0 0 12px;
+}
+.hero-tagline {
+	font-size: 1.15rem;
+	color: #555;
+	max-width: 40ch;
+}
+.hero-cta {
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+/* Buttons */
+.btn {
+	display: inline-block;
+	padding: 9px 18px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	border: 1px solid #3273dc;
+}
+.btn-primary {
+	background-color: #3273dc;
+	color: #fff;
+}
+.btn-secondary {
+	color: #3273dc;
+	background-color: transparent;
+}
+.btn:hover {
+	opacity: 0.88;
+}
+
+/* Experience timeline */
+.timeline {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.timeline-item {
+	padding: 0 0 24px 20px;
+	border-left: 2px solid #eaeaea;
+	position: relative;
+}
+.timeline-item::before {
+	content: "";
+	position: absolute;
+	left: -6px;
+	top: 6px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #3273dc;
+}
+.timeline-head {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: baseline;
+}
+.timeline-company {
+	color: #3273dc;
+	font-weight: 600;
+}
+.timeline-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	color: #777;
+	font-size: 0.85rem;
+	margin: 2px 0 8px;
+}
+
+/* Skills */
+.skills-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 20px;
+}
+.skill-group h3 {
+	font-size: 1rem;
+	margin: 0 0 10px;
+}
+.tag-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.tag {
+	background-color: #f2f2f2;
+	border-radius: 6px;
+	padding: 3px 10px;
+	font-size: 0.85rem;
+	color: #333;
+}
+
+/* Projects */
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 18px;
+}
+.project-card {
+	display: block;
+	border: 1px solid #e6e6e6;
+	border-radius: 10px;
+	padding: 18px;
+	text-decoration: none;
+	color: inherit;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.project-card:hover {
+	border-color: #3273dc;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+.project-card h3 {
+	margin: 0 0 8px;
+	color: #3273dc;
+}
+.project-card p {
+	margin: 0 0 12px;
+	color: #555;
+	font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+	.hero-name {
+		font-size: 2rem;
+	}
+}
