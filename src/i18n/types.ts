@@ -15,7 +15,6 @@ export interface SiteContent {
         name: string;
         role: string;
         tagline: string;
-        ctaPrimary: string;
     };
     about: {
         heading: string;

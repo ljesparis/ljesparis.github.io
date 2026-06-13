@@ -1,10 +1,10 @@
-export const SITE_TITLE = 'Leonardo Esparis — Senior Software Engineer';
+export const SITE_TITLE = 'Leonardo Esparis — Software Engineer';
 export const SITE_DESCRIPTION =
-    'Leonardo Esparis, senior software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.';
+    'Leonardo Esparis, software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.';
 
 export const PERSON = {
     name: 'Leonardo Esparis',
-    jobTitle: 'Senior Software Engineer',
+    jobTitle: 'Software Engineer',
     email: 'ljesparis@gmail.com',
     linkedin: 'https://www.linkedin.com/in/leoesparis/',
     github: 'https://github.com/ljesparis/'

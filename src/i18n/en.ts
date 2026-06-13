@@ -2,19 +2,18 @@ import type { SiteContent } from './types';
 
 export const en: SiteContent = {
     meta: {
-        title: 'Leonardo Esparis — Senior Software Engineer',
+        title: 'Leonardo Esparis — Software Engineer',
         description:
-            'Leonardo Esparis, senior software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.'
+            'Leonardo Esparis, software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.'
     },
 
     switchToLabel: 'Español',
 
     hero: {
         name: 'Leonardo Esparis',
-        role: 'Senior Software Engineer',
+        role: 'Software Engineer',
         tagline:
-            'I build the kind of systems that have to stay calm under pressure — and I love every part of the craft.',
-        ctaPrimary: 'Get in touch'
+            'I build the kind of systems that have to stay calm under pressure — and I love every part of the craft.'
     },
 
     about: {

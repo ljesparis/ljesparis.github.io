@@ -2,19 +2,18 @@ import type { SiteContent } from './types';
 
 export const es: SiteContent = {
     meta: {
-        title: 'Leonardo Esparis — Ingeniero de Software Senior',
+        title: 'Leonardo Esparis — Ingeniero de Software',
         description:
-            'Leonardo Esparis, ingeniero de software senior con más de 8 años construyendo backends: sistemas distribuidos, altamente concurrentes y orientados a eventos en Python.'
+            'Leonardo Esparis, ingeniero de software con más de 8 años construyendo backends: sistemas distribuidos, altamente concurrentes y orientados a eventos en Python.'
     },
 
     switchToLabel: 'English',
 
     hero: {
         name: 'Leonardo Esparis',
-        role: 'Ingeniero de Software Senior',
+        role: 'Ingeniero de Software',
         tagline:
-            'Construyo sistemas que tienen que mantener la calma bajo presión, y disfruto cada parte del oficio.',
-        ctaPrimary: 'Contáctame'
+            'Construyo sistemas que tienen que mantener la calma bajo presión, y disfruto cada parte del oficio.'
     },
 
     about: {

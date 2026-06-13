@@ -158,9 +158,6 @@ blockquote {
 .hero-inner {
 	width: 100%;
 }
-.hero-accent {
-	display: none;
-}
 .hero-role {
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -181,9 +178,6 @@ blockquote {
 	color: var(--text-soft);
 	max-width: 34ch;
 	margin: 0;
-}
-.hero-cta {
-	margin-top: 24px;
 }
 
 .btn {
