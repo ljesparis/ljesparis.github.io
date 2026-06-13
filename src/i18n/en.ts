@@ -24,7 +24,7 @@ export const en: SiteContent = {
         heading: 'About me',
         paragraphs: [
             "I'm Leonardo, a software engineer with 8+ years of building backends I'm genuinely proud of. I'm happiest working on highly concurrent, event-driven systems — the kind where distributed services on AWS pass messages through Kafka or RabbitMQ and everything has to stay coherent.",
-            "Most of my work lives in Python and Django, with a real soft spot for clean, maintainable design (DDD and hexagonal architecture feel like home). Part of my career has been spent on payment systems, where correctness really matters. I love building things, and I'm always stepping out of my comfort zone to learn new languages. Based in Madrid."
+            "Most of my work lives in Python and Django, with a real soft spot for clean, maintainable design (DDD and hexagonal architecture feel like home). Part of my career has been spent on payment systems, where correctness really matters. I love building things, and I'm always learning new languages."
         ]
     },
 

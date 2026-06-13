@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
-import { PERSON, SOCIAL_LINKS } from '../consts';
+import { SOCIAL_LINKS } from '../consts';
 import {
     getLangFromUrl,
     getContent,
@@ -38,7 +38,7 @@ const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
   <body>
     <header>
       <nav class="site-nav">
-        <a class="wordmark" href={homePath}>{PERSON.name}</a>
+        <a class="wordmark" href={homePath}>ljesparis</a>
         <div class="nav-meta">
           {SOCIAL_LINKS.map((link) => (
             <a href={link.url} target="_blank" rel="noopener noreferrer me">
