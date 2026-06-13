@@ -175,8 +175,10 @@ blockquote {
  * Hero
  * ------------------------------------------------------------------ */
 .hero {
-	/* Mobile-first: size to content so it starts right under the nav.
-	   A tall, vertically-centered hero is reintroduced only on wider screens. */
+	/* Mobile-first and content-driven: the hero sizes to its content at every
+	   breakpoint (no viewport-based min-height, no vertical centering), so it
+	   never reserves empty space. Larger screens just get more breathing room
+	   via padding. */
 	padding: 24px 0 8px;
 	background: radial-gradient(
 		120% 80% at 0% 0%,
@@ -304,13 +306,10 @@ blockquote {
 }
 
 @media (min-width: 768px) {
-	/* Give the hero presence on larger screens — modest height, not full-viewport,
-	   so the short page doesn't develop big empty gaps. */
+	/* More breathing room on larger screens — via padding only, never a
+	   viewport-height box, so no empty gap forms before the next section. */
 	.hero {
-		display: flex;
-		align-items: center;
-		min-height: 56vh;
-		padding: 40px 0 16px;
+		padding: 56px 0 16px;
 	}
 }
 
