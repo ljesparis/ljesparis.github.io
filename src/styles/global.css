@@ -20,7 +20,8 @@
 
 	--font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
 		sans-serif;
-	--maxw: 50rem;
+	--maxw: 58rem;
+	--prose: 65ch;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -170,24 +171,33 @@ blockquote {
 	font-size: 1.5rem;
 	margin-bottom: 12px;
 }
+/* Keep body copy at a comfortable reading measure inside the wider column. */
+.section p {
+	max-width: var(--prose);
+}
 
 /* ------------------------------------------------------------------ *
  * Hero
  * ------------------------------------------------------------------ */
 .hero {
-	/* Mobile-first and content-driven: the hero sizes to its content at every
-	   breakpoint (no viewport-based min-height, no vertical centering), so it
-	   never reserves empty space. Larger screens just get more breathing room
-	   via padding. */
-	padding: 24px 0 8px;
+	/* Mobile-first and content-driven: sizes to its content at every breakpoint
+	   (no viewport min-height, no vertical centering), so it never reserves
+	   empty space. The background is full-bleed (spans the viewport) so the page
+	   reads as intentionally wide on desktop instead of a narrow centered strip;
+	   the text stays in .hero-inner at the readable column width. */
+	padding-block: 24px 8px;
+	margin-inline: calc(50% - 50vw);
+	padding-inline: calc(50vw - 50%);
 	background: radial-gradient(
-		120% 80% at 0% 0%,
+		110% 90% at 0% 0%,
 		var(--hero-glow),
-		transparent 60%
+		transparent 55%
 	);
 }
 .hero-inner {
 	width: 100%;
+	max-width: var(--maxw);
+	margin-inline: auto;
 }
 .hero-role {
 	text-transform: uppercase;
@@ -198,7 +208,9 @@ blockquote {
 	font-weight: 700;
 }
 .hero-name {
-	font-size: clamp(2.5rem, 9vw, 3.75rem);
+	/* Keeps growing past the old ~668px lock-in point so the name has presence
+	   on wide desktop screens, not just on mobile. */
+	font-size: clamp(2.5rem, 5vw + 1rem, 4.25rem);
 	line-height: 1.05;
 	letter-spacing: -0.02em;
 	font-weight: 700;
@@ -298,7 +310,7 @@ blockquote {
 		font-size: 1.25rem;
 	}
 	.section {
-		margin: 64px 0;
+		margin: 56px 0;
 	}
 	.projects-grid {
 		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -306,10 +318,10 @@ blockquote {
 }
 
 @media (min-width: 768px) {
-	/* More breathing room on larger screens — via padding only, never a
-	   viewport-height box, so no empty gap forms before the next section. */
+	/* More vertical breathing room on larger screens via padding-block only
+	   (padding-inline drives the full-bleed background — don't clobber it). */
 	.hero {
-		padding: 56px 0 16px;
+		padding-block: 56px 16px;
 	}
 }
 
