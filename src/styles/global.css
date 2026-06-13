@@ -161,7 +161,7 @@ blockquote {
  * Sections
  * ------------------------------------------------------------------ */
 .section {
-	margin: 48px 0;
+	margin: 36px 0;
 }
 .section + .section {
 	padding-top: 8px;
@@ -175,10 +175,9 @@ blockquote {
  * Hero
  * ------------------------------------------------------------------ */
 .hero {
-	display: flex;
-	align-items: center;
-	min-height: clamp(70svh, 80vh, 640px);
-	padding: 32px 0 8px;
+	/* Mobile-first: size to content so it starts right under the nav.
+	   A tall, vertically-centered hero is reintroduced only on wider screens. */
+	padding: 24px 0 8px;
 	background: radial-gradient(
 		120% 80% at 0% 0%,
 		var(--hero-glow),
@@ -301,6 +300,17 @@ blockquote {
 	}
 	.projects-grid {
 		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	}
+}
+
+@media (min-width: 768px) {
+	/* Give the hero presence on larger screens — modest height, not full-viewport,
+	   so the short page doesn't develop big empty gaps. */
+	.hero {
+		display: flex;
+		align-items: center;
+		min-height: 56vh;
+		padding: 40px 0 16px;
 	}
 }
 
