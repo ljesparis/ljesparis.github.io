@@ -158,6 +158,9 @@ blockquote {
 .hero-inner {
 	width: 100%;
 }
+.hero-accent {
+	display: none;
+}
 .hero-role {
 	text-transform: uppercase;
 	letter-spacing: 0.1em;

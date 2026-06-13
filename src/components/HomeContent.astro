@@ -12,12 +12,17 @@ const t = getContent(lang);
 
 <section class="hero">
     <div class="hero-inner">
-        <p class="hero-role">{t.hero.role}</p>
-        <h1 class="hero-name">{t.hero.name}</h1>
-        <p class="hero-tagline">{t.hero.tagline}</p>
-        <div class="hero-cta">
-            <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
+        <div class="hero-text">
+            <p class="hero-role">{t.hero.role}</p>
+            <h1 class="hero-name">{t.hero.name}</h1>
+            <p class="hero-tagline">{t.hero.tagline}</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
+            </div>
         </div>
+        <aside class="hero-accent" aria-hidden="true">
+            <span class="monogram">LE</span>
+        </aside>
     </div>
 </section>
 
