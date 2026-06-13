@@ -1,80 +1,34 @@
 // Diccionario de contenido en español.
-// NOTA: las cadenas con prefijo "TODO:" son marcadores. Sustitúyelas por el
-// contenido real (bio, experiencia, skills, proyectos) antes de publicar.
 import type { SiteContent } from './types';
 
 export const es: SiteContent = {
     // Metadatos SEO por página.
     meta: {
-        title: 'Leonardo Esparis — Ingeniero de Software',
+        title: 'Leonardo Esparis — Ingeniero de Software Senior',
         description:
-            'Leonardo Esparis, ingeniero de software con experiencia construyendo sistemas fiables y de alto tráfico. Conoce mi experiencia, stack y proyectos.'
-    },
-
-    // Etiquetas de la navegación.
-    nav: {
-        about: 'Sobre mí',
-        experience: 'Experiencia',
-        skills: 'Stack',
-        projects: 'Proyectos',
-        contact: 'Contacto'
+            'Leonardo Esparis, ingeniero de software senior con más de 8 años construyendo backends: sistemas distribuidos, altamente concurrentes y orientados a eventos en Python.'
     },
 
     // Selector de idioma (enlace al OTRO idioma).
-    languageName: 'Español',
     switchToLabel: 'English',
 
     hero: {
         name: 'Leonardo Esparis',
-        role: 'Ingeniero de Software',
-        // Propuesta de valor en una línea. Directa y concreta.
+        role: 'Ingeniero de Software Senior',
         tagline:
-            'TODO: Una frase que describa qué haces y el valor que aportas (p. ej. "Construyo sistemas backend escalables que sirven a millones de usuarios").',
-        ctaPrimary: 'Contáctame',
-        ctaSecondary: 'Ver proyectos'
+            'Construyo sistemas que tienen que mantener la calma bajo presión, y disfruto cada parte del oficio.',
+        ctaPrimary: 'Contáctame'
     },
 
     about: {
         heading: 'Sobre mí',
         paragraphs: [
-            'TODO: Párrafo 1 — quién eres, tu enfoque y qué te motiva como ingeniero.',
-            'TODO: Párrafo 2 — qué tipo de problemas te gusta resolver y el impacto de tu trabajo.',
-            'TODO: Párrafo 3 (opcional) — qué estás explorando ahora o a qué estás abierto.'
+            'Soy Leonardo, ingeniero de software con más de 8 años creando backends de los que estoy orgulloso. Donde mejor me siento es en sistemas altamente concurrentes y orientados a eventos: servicios distribuidos en AWS que intercambian mensajes mediante Kafka o RabbitMQ y donde todo tiene que mantenerse coherente.',
+            'La mayor parte de mi trabajo vive en Python y Django, con verdadera debilidad por el diseño limpio y mantenible (DDD y arquitectura hexagonal me resultan terreno conocido). Parte de mi carrera la he dedicado a sistemas de pagos, donde la corrección importa de verdad. Me encanta construir y salir de mi zona de confort aprendiendo nuevos lenguajes. Afincado en Madrid.'
         ]
     },
 
-    experience: {
-        heading: 'Experiencia',
-        // Más reciente primero.
-        items: [
-            {
-                company: 'TODO: Nombre de la empresa',
-                role: 'TODO: Tu rol',
-                period: 'TODO: p. ej. 2022 — Actualidad',
-                location: 'TODO: Ciudad / Remoto',
-                highlights: [
-                    'TODO: Logro con impacto medible (cifras, escala, resultados).',
-                    'TODO: Tecnología o responsabilidad clave.'
-                ]
-            }
-        ]
-    },
-
-    skills: {
-        heading: 'Stack tecnológico',
-        // Agrupa tecnologías relacionadas; añade o quita grupos libremente.
-        groups: [
-            {
-                name: 'TODO: p. ej. Lenguajes',
-                items: ['TODO: Go', 'TODO: Python', 'TODO: TypeScript']
-            },
-            {
-                name: 'TODO: p. ej. Infraestructura',
-                items: ['TODO: Docker', 'TODO: Kubernetes', 'TODO: AWS']
-            }
-        ]
-    },
-
+    // Oculto por ahora. Rellénalo y reactiva la sección en HomeContent.astro.
     projects: {
         heading: 'Proyectos destacados',
         items: [
@@ -90,7 +44,7 @@ export const es: SiteContent = {
 
     contact: {
         heading: 'Contacto',
-        text: 'TODO: Una línea breve invitando a escribirte, y debajo tus canales.',
+        text: '¿Tienes un problema o una idea interesante? Me encantará saber de ti.',
         emailLabel: 'Escríbeme'
     }
 };

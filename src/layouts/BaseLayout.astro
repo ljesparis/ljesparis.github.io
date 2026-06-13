@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
-import { SOCIAL_LINKS } from '../consts';
+import { PERSON, SOCIAL_LINKS } from '../consts';
 import {
     getLangFromUrl,
     getContent,
@@ -22,17 +22,12 @@ const t = getContent(lang);
 const title = Astro.props.title ?? t.meta.title;
 const description = Astro.props.description ?? t.meta.description;
 
-// Anchor links within the single-page layout.
-const sectionLinks = [
-    { href: '#about', label: t.nav.about },
-    { href: '#experience', label: t.nav.experience },
-    { href: '#skills', label: t.nav.skills },
-    { href: '#projects', label: t.nav.projects },
-    { href: '#contact', label: t.nav.contact }
-];
+// Wordmark links to the home of the current language.
+const homePath = lang === 'en' ? '/' : '/es/';
 
-// Link to the same page in the other language.
-const switchPath = getLocalizedPath(Astro.url.pathname, lang === 'en' ? 'es' : 'en');
+// Language switch: same page in the other language.
+const otherLang = lang === 'en' ? 'es' : 'en';
+const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
 ---
 
 <!DOCTYPE html>
@@ -43,18 +38,22 @@ const switchPath = getLocalizedPath(Astro.url.pathname, lang === 'en' ? 'es' : '
   <body>
     <header>
       <nav class="site-nav">
-        <div class="nav-sections">
-          {sectionLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
-        </div>
+        <a class="wordmark" href={homePath}>{PERSON.name}</a>
         <div class="nav-meta">
           {SOCIAL_LINKS.map((link) => (
             <a href={link.url} target="_blank" rel="noopener noreferrer me">
               {link.title}
             </a>
           ))}
-          <a class="lang-switch" href={switchPath}>{t.switchToLabel}</a>
+          <a
+            class="lang-switch"
+            href={switchPath}
+            lang={otherLang}
+            hreflang={LOCALE_TAGS[otherLang]}
+            aria-label={`Switch language to ${t.switchToLabel}`}
+          >
+            {t.switchToLabel}
+          </a>
         </div>
       </nav>
     </header>

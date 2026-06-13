@@ -1,80 +1,34 @@
 // English content dictionary.
-// NOTE: Strings prefixed with "TODO:" are placeholders. Replace them with the
-// real content (bio, experience, skills, projects) before going live.
 import type { SiteContent } from './types';
 
 export const en: SiteContent = {
     // Per-page SEO metadata.
     meta: {
-        title: 'Leonardo Esparis — Software Engineer',
+        title: 'Leonardo Esparis — Senior Software Engineer',
         description:
-            'Leonardo Esparis, software engineer experienced building reliable, high-traffic systems. Explore my experience, tech stack and projects.'
+            'Leonardo Esparis, senior software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.'
     },
 
-    // Top navigation labels.
-    nav: {
-        about: 'About',
-        experience: 'Experience',
-        skills: 'Tech stack',
-        projects: 'Projects',
-        contact: 'Contact'
-    },
-
-    // Language switcher label (shown for the link to the OTHER language).
-    languageName: 'English',
+    // Language switcher label (link to the OTHER language).
     switchToLabel: 'Español',
 
     hero: {
         name: 'Leonardo Esparis',
-        role: 'Software Engineer',
-        // One-line value proposition. Keep it punchy and concrete.
+        role: 'Senior Software Engineer',
         tagline:
-            'TODO: One sentence describing what you do and the value you bring (e.g. "I build scalable backend systems that serve millions of users").',
-        ctaPrimary: 'Get in touch',
-        ctaSecondary: 'View projects'
+            'I build the kind of systems that have to stay calm under pressure — and I love every part of the craft.',
+        ctaPrimary: 'Get in touch'
     },
 
     about: {
         heading: 'About me',
         paragraphs: [
-            'TODO: Paragraph 1 — who you are, your focus and what drives you as an engineer.',
-            'TODO: Paragraph 2 — the kind of problems you enjoy solving and the impact of your work.',
-            'TODO: Paragraph 3 (optional) — what you are exploring now or open to.'
+            "I'm Leonardo, a software engineer with 8+ years of building backends I'm genuinely proud of. I'm happiest working on highly concurrent, event-driven systems — the kind where distributed services on AWS pass messages through Kafka or RabbitMQ and everything has to stay coherent.",
+            "Most of my work lives in Python and Django, with a real soft spot for clean, maintainable design (DDD and hexagonal architecture feel like home). Part of my career has been spent on payment systems, where correctness really matters. I love building things, and I'm always stepping out of my comfort zone to learn new languages. Based in Madrid."
         ]
     },
 
-    experience: {
-        heading: 'Experience',
-        // Most recent first.
-        items: [
-            {
-                company: 'TODO: Company name',
-                role: 'TODO: Your role',
-                period: 'TODO: e.g. 2022 — Present',
-                location: 'TODO: City / Remote',
-                highlights: [
-                    'TODO: Achievement with measurable impact (numbers, scale, results).',
-                    'TODO: Key technology or responsibility.'
-                ]
-            }
-        ]
-    },
-
-    skills: {
-        heading: 'Tech stack',
-        // Group related technologies; add or remove groups freely.
-        groups: [
-            {
-                name: 'TODO: e.g. Languages',
-                items: ['TODO: Go', 'TODO: Python', 'TODO: TypeScript']
-            },
-            {
-                name: 'TODO: e.g. Infrastructure',
-                items: ['TODO: Docker', 'TODO: Kubernetes', 'TODO: AWS']
-            }
-        ]
-    },
-
+    // Hidden for now. Fill these in and re-enable the section in HomeContent.astro.
     projects: {
         heading: 'Featured projects',
         items: [
@@ -90,7 +44,7 @@ export const en: SiteContent = {
 
     contact: {
         heading: 'Get in touch',
-        text: 'TODO: A short line inviting people to reach out, then your channels below.',
+        text: "Got an interesting problem or idea? I'd be glad to hear from you.",
         emailLabel: 'Email me'
     }
 };
