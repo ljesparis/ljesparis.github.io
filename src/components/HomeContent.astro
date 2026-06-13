@@ -15,12 +15,13 @@ const t = getContent(lang);
 
 <!-- Hero -->
 <section class="hero">
-    <p class="hero-role">{t.hero.role}</p>
-    <h1 class="hero-name">{t.hero.name}</h1>
-    <p class="hero-tagline">{t.hero.tagline}</p>
-    <div class="hero-cta">
-        <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
-        <a class="btn btn-secondary" href="#projects">{t.hero.ctaSecondary}</a>
+    <div class="hero-inner">
+        <p class="hero-role">{t.hero.role}</p>
+        <h1 class="hero-name">{t.hero.name}</h1>
+        <p class="hero-tagline">{t.hero.tagline}</p>
+        <div class="hero-cta">
+            <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
+        </div>
     </div>
 </section>
 
@@ -30,75 +31,34 @@ const t = getContent(lang);
     {t.about.paragraphs.map((p) => <p>{p}</p>)}
 </section>
 
-<!-- Experience -->
-<section id="experience" class="section">
-    <h2>{t.experience.heading}</h2>
-    <ol class="timeline">
-        {
-            t.experience.items.map((item) => (
-                <li class="timeline-item">
-                    <div class="timeline-head">
-                        <strong>{item.role}</strong>
-                        <span class="timeline-company">{item.company}</span>
-                    </div>
-                    <div class="timeline-meta">
-                        <span>{item.period}</span>
-                        <span>{item.location}</span>
-                    </div>
-                    <ul>
-                        {item.highlights.map((h) => (
-                            <li>{h}</li>
-                        ))}
-                    </ul>
-                </li>
-            ))
-        }
-    </ol>
-</section>
+{/*
+  Featured projects — Hidden for now. Uncomment to re-enable (data lives in
+  src/i18n/{en,es}.ts under `projects`; styles in global.css under .projects-grid).
 
-<!-- Tech stack -->
-<section id="skills" class="section">
-    <h2>{t.skills.heading}</h2>
-    <div class="skills-grid">
-        {
-            t.skills.groups.map((group) => (
-                <div class="skill-group">
-                    <h3>{group.name}</h3>
-                    <ul class="tag-list">
-                        {group.items.map((item) => (
-                            <li class="tag">{item}</li>
-                        ))}
-                    </ul>
-                </div>
-            ))
-        }
-    </div>
-</section>
-
-<!-- Featured projects -->
-<section id="projects" class="section">
-    <h2>{t.projects.heading}</h2>
-    <div class="projects-grid">
-        {
-            t.projects.items.map((project) => (
-                <a
-                    class="project-card"
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <h3>{project.name}</h3>
-                    <p>{project.description}</p>
-                    <ul class="tag-list">
-                        {project.tags.map((tag) => (
-                            <li class="tag">{tag}</li>
-                        ))}
-                    </ul>
-                </a>
-            ))
-        }
-    </div>
-</section>
+  <section id="projects" class="section">
+      <h2>{t.projects.heading}</h2>
+      <div class="projects-grid">
+          {
+              t.projects.items.map((project) => (
+                  <a
+                      class="project-card"
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                  >
+                      <h3>{project.name}</h3>
+                      <p>{project.description}</p>
+                      <ul class="tag-list">
+                          {project.tags.map((tag) => (
+                              <li class="tag">{tag}</li>
+                          ))}
+                      </ul>
+                  </a>
+              ))
+          }
+      </div>
+  </section>
+*/}
 
 <!-- Contact -->
 <section id="contact" class="section">

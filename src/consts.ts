@@ -2,14 +2,14 @@
 // Visible copy lives in the per-language dictionaries (src/i18n/en.ts, es.ts).
 
 // Fallbacks used when a page does not pass its own title/description.
-export const SITE_TITLE = 'Leonardo Esparis — Software Engineer';
+export const SITE_TITLE = 'Leonardo Esparis — Senior Software Engineer';
 export const SITE_DESCRIPTION =
-    'Leonardo Esparis, software engineer experienced building reliable, high-traffic systems. Explore my experience, tech stack and projects.';
+    'Leonardo Esparis, senior software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.';
 
 // Personal identity, used for the JSON-LD Person schema and contact links.
 export const PERSON = {
     name: 'Leonardo Esparis',
-    jobTitle: 'Software Engineer',
+    jobTitle: 'Senior Software Engineer',
     email: 'ljesparis@gmail.com',
     // Profiles power JSON-LD `sameAs` so search engines can link your identity.
     linkedin: 'https://www.linkedin.com/in/leoesparis/',
