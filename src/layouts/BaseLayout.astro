@@ -2,36 +2,65 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
-import Link from '../components/Link.astro';
 
+import { SOCIAL_LINKS } from '../consts';
 import {
-    SITE_TITLE,
-    SITE_HTML_TITLE,
-    SITE_DESCRIPTION,
-    ROUTES
-} from '../consts';
+    getLangFromUrl,
+    getContent,
+    getLocalizedPath,
+    LOCALE_TAGS
+} from '../i18n/utils';
 
+export interface Props {
+    title?: string;
+    description?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = getContent(lang);
+
+const title = Astro.props.title ?? t.meta.title;
+const description = Astro.props.description ?? t.meta.description;
+
+// Anchor links within the single-page layout.
+const sectionLinks = [
+    { href: '#about', label: t.nav.about },
+    { href: '#experience', label: t.nav.experience },
+    { href: '#skills', label: t.nav.skills },
+    { href: '#projects', label: t.nav.projects },
+    { href: '#contact', label: t.nav.contact }
+];
+
+// Link to the same page in the other language.
+const switchPath = getLocalizedPath(Astro.url.pathname, lang === 'en' ? 'es' : 'en');
 ---
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang={LOCALE_TAGS[lang]}>
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={title} description={description} lang={lang} />
   </head>
   <body>
-    <h1>{SITE_HTML_TITLE}</h1>
-    <nav>
-      {ROUTES.map((route) => (
-            <Link
-                href={route.pathOrUrl}
-                rel="nofollow"
-                target={route.isLocal? "_self": "_blank"}>
-            {route.title}
-            </Link>
-        ))}
-    </nav>
-    <article>
-       <slot />
-    </article>
+    <header>
+      <nav class="site-nav">
+        <div class="nav-sections">
+          {sectionLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </div>
+        <div class="nav-meta">
+          {SOCIAL_LINKS.map((link) => (
+            <a href={link.url} target="_blank" rel="noopener noreferrer me">
+              {link.title}
+            </a>
+          ))}
+          <a class="lang-switch" href={switchPath}>{t.switchToLabel}</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
     <Footer />
     <GoogleAnalytics />
   </body>

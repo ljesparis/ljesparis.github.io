@@ -1,32 +1,92 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
+// Centralized <head> metadata included on every page via BaseLayout.
+// Import global.css here so it ships on all pages.
 import '../styles/global.css';
+import { PERSON, SOCIAL_IMAGE } from '../consts';
+import {
+    getAlternateLinks,
+    LOCALE_TAGS,
+    LANGS,
+    type Lang
+} from '../i18n/utils';
 
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
+    title: string;
+    description: string;
+    lang: Lang;
+    image?: string;
 }
 
-const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
+const { title, description, lang, image = SOCIAL_IMAGE } = Astro.props;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
+const alternates = getAlternateLinks(Astro.url.pathname, Astro.site);
+const ogLocale = LOCALE_TAGS[lang];
+const ogLocaleAlternate = LANGS.filter((l) => l !== lang).map(
+    (l) => LOCALE_TAGS[l]
+);
+
+// JSON-LD Person schema: helps search engines understand who you are and link
+// your social profiles (sameAs) to your identity.
+const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: PERSON.name,
+    jobTitle: PERSON.jobTitle,
+    url: Astro.site?.href,
+    email: `mailto:${PERSON.email}`,
+    image: imageURL.href,
+    sameAs: [PERSON.linkedin, PERSON.github]
+};
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/x-icon" svghref="/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#ffffff" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- RSS Feed Discovery -->
-<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+<!-- hreflang alternates -->
+{
+    alternates.map((alt) => (
+        <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))
+}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={PERSON.name} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:locale" content={ogLocale} />
+{
+    ogLocaleAlternate.map((loc) => (
+        <meta property="og:locale:alternate" content={loc} />
+    ))
+}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+
+<!-- Structured Data -->
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify(personSchema)}
+/>
