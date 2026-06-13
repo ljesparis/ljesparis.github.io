@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
-import { PERSON, SOCIAL_LINKS } from '../consts';
+import { SOCIAL_LINKS } from '../consts';
 import {
     getLangFromUrl,
     getContent,
@@ -22,10 +22,8 @@ const t = getContent(lang);
 const title = Astro.props.title ?? t.meta.title;
 const description = Astro.props.description ?? t.meta.description;
 
-// Wordmark links to the home of the current language.
 const homePath = lang === 'en' ? '/' : '/es/';
 
-// Language switch: same page in the other language.
 const otherLang = lang === 'en' ? 'es' : 'en';
 const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
 ---
@@ -38,7 +36,7 @@ const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
   <body>
     <header>
       <nav class="site-nav">
-        <a class="wordmark" href={homePath}>{PERSON.name}</a>
+        <a class="wordmark" href={homePath}>ljesparis</a>
         <div class="nav-meta">
           {SOCIAL_LINKS.map((link) => (
             <a href={link.url} target="_blank" rel="noopener noreferrer me">

@@ -1,8 +1,3 @@
-// Shared shape for the per-language content dictionaries.
-// Both en.ts and es.ts implement this, keeping the two languages in sync.
-
-// Projects are hidden for now but kept here so the section can be re-enabled
-// without rebuilding its data model.
 export interface ProjectItem {
     name: string;
     description: string;
@@ -15,7 +10,6 @@ export interface SiteContent {
         title: string;
         description: string;
     };
-    // Label for the link that switches to the other language.
     switchToLabel: string;
     hero: {
         name: string;
@@ -27,7 +21,6 @@ export interface SiteContent {
         heading: string;
         paragraphs: string[];
     };
-    // Hidden for now — see HomeContent.astro.
     projects: {
         heading: string;
         items: ProjectItem[];

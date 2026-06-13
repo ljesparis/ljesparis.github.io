@@ -1,7 +1,4 @@
 ---
-// Single source of truth for the landing page layout. Rendered by both the
-// English (/) and Spanish (/es/) index pages; content comes from the matching
-// i18n dictionary.
 import { getContent, type Lang } from '../i18n/utils';
 import { PERSON } from '../consts';
 
@@ -13,54 +10,27 @@ const { lang } = Astro.props;
 const t = getContent(lang);
 ---
 
-<!-- Hero -->
 <section class="hero">
     <div class="hero-inner">
-        <p class="hero-role">{t.hero.role}</p>
-        <h1 class="hero-name">{t.hero.name}</h1>
-        <p class="hero-tagline">{t.hero.tagline}</p>
-        <div class="hero-cta">
-            <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
+        <div class="hero-text">
+            <p class="hero-role">{t.hero.role}</p>
+            <h1 class="hero-name">{t.hero.name}</h1>
+            <p class="hero-tagline">{t.hero.tagline}</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
+            </div>
         </div>
+        <aside class="hero-accent" aria-hidden="true">
+            <span class="monogram">LE</span>
+        </aside>
     </div>
 </section>
 
-<!-- About -->
 <section id="about" class="section">
     <h2>{t.about.heading}</h2>
     {t.about.paragraphs.map((p) => <p>{p}</p>)}
 </section>
 
-{/*
-  Featured projects — Hidden for now. Uncomment to re-enable (data lives in
-  src/i18n/{en,es}.ts under `projects`; styles in global.css under .projects-grid).
-
-  <section id="projects" class="section">
-      <h2>{t.projects.heading}</h2>
-      <div class="projects-grid">
-          {
-              t.projects.items.map((project) => (
-                  <a
-                      class="project-card"
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                  >
-                      <h3>{project.name}</h3>
-                      <p>{project.description}</p>
-                      <ul class="tag-list">
-                          {project.tags.map((tag) => (
-                              <li class="tag">{tag}</li>
-                          ))}
-                      </ul>
-                  </a>
-              ))
-          }
-      </div>
-  </section>
-*/}
-
-<!-- Contact -->
 <section id="contact" class="section">
     <h2>{t.contact.heading}</h2>
     <p>{t.contact.text}</p>
