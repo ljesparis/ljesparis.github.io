@@ -129,11 +129,22 @@ blockquote {
 	text-decoration: underline;
 }
 .lang-switch {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
 	border: 1px solid var(--border);
 	border-radius: 999px;
 	padding: 3px 12px;
 	font-weight: 600;
 	line-height: 1.6;
+}
+.lang-switch-globe {
+	width: 1.05em;
+	height: 1.05em;
+	flex-shrink: 0;
+}
+.lang-switch-code {
+	letter-spacing: 0.02em;
 }
 .lang-switch:hover {
 	border-color: var(--accent);
@@ -178,30 +189,6 @@ blockquote {
 	color: var(--text-soft);
 	max-width: 34ch;
 	margin: 0;
-}
-
-.btn {
-	display: inline-block;
-	padding: 12px 22px;
-	min-height: 44px;
-	border-radius: 8px;
-	text-decoration: none;
-	font-weight: 600;
-	border: 1px solid var(--accent);
-	transition: background-color 0.15s ease, transform 0.05s ease;
-}
-.btn-primary {
-	background-color: var(--accent);
-	color: #fff;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-.btn-primary:hover {
-	background-color: var(--accent-ink);
-	border-color: var(--accent-ink);
-	color: #fff;
-}
-.btn-primary:active {
-	transform: translateY(1px);
 }
 
 .projects-grid {

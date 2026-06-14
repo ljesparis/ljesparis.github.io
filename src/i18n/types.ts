@@ -24,9 +24,4 @@ export interface SiteContent {
         heading: string;
         items: ProjectItem[];
     };
-    contact: {
-        heading: string;
-        text: string;
-        emailLabel: string;
-    };
 }
