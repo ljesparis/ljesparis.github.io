@@ -1,6 +1,5 @@
 ---
 import { getContent, type Lang } from '../i18n/utils';
-import { PERSON } from '../consts';
 
 export interface Props {
     lang: Lang;
@@ -21,14 +20,4 @@ const t = getContent(lang);
 <section id="about" class="section">
     <h2>{t.about.heading}</h2>
     {t.about.paragraphs.map((p) => <p>{p}</p>)}
-</section>
-
-<section id="contact" class="section">
-    <h2>{t.contact.heading}</h2>
-    <p>{t.contact.text}</p>
-    <p>
-        <a class="btn btn-primary" href={`mailto:${PERSON.email}`}>
-            {t.contact.emailLabel}
-        </a>
-    </p>
 </section>

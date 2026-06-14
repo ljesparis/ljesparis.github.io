@@ -35,11 +35,5 @@ export const es: SiteContent = {
                 url: 'https://github.com/ljesparis/'
             }
         ]
-    },
-
-    contact: {
-        heading: 'Contacto',
-        text: '¿Tienes un problema o una idea interesante? Me encantará saber de ti.',
-        emailLabel: 'Escríbeme'
     }
 };
