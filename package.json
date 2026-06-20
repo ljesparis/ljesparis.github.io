@@ -19,5 +19,8 @@
   },
   "volta": {
     "node": "21.0.0"
+  },
+  "devDependencies": {
+    "@playform/compress": "^0.2.3"
   }
 }

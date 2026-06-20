@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-
 import sitemap from '@astrojs/sitemap';
+import compress from '@playform/compress';
+
+const isProd = process.env.ENV === 'PRO';
 
 export default defineConfig({
     site: 'https://ljesparis.com/',
@@ -23,7 +25,14 @@ export default defineConfig({
                     es: 'es-ES'
                 }
             }
-        })
+        }),
+        ...(isProd ? [compress({
+            CSS: true,
+            HTML: true,
+            JavaScript: true,
+            Image: false,
+            SVG: false,
+        })] : []),
     ],
     prefetch: {
         defaultStrategy: "load"
