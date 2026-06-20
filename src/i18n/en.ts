@@ -4,36 +4,55 @@ export const en: SiteContent = {
     meta: {
         title: 'Leonardo Esparis — Software Engineer',
         description:
-            'Leonardo Esparis, software engineer with 8+ years building backends — highly concurrent, event-driven, distributed systems in Python.'
+            'Leonardo Esparis — software engineer building reliable, high-concurrency, event-driven payment systems in Python and Django.'
     },
 
     switchToLabel: 'Español',
 
-    hero: {
-        name: 'Leonardo Esparis',
-        role: 'Software Engineer',
-        tagline:
-            'I build the kind of systems that have to stay calm under pressure — and I love every part of the craft.'
-    },
-
     about: {
-        heading: 'About me',
-        paragraphs: [
-            "I'm Leonardo, a software engineer with 8+ years of building backends I'm genuinely proud of. I'm happiest working on highly concurrent, event-driven systems — the kind where distributed services on AWS pass messages through Kafka or RabbitMQ and everything has to stay coherent.",
-            "Most of my work lives in Python and Django, with a real soft spot for clean, maintainable design (DDD and hexagonal architecture feel like home). Part of my career has been spent on payment systems, where correctness really matters. I love building things, and I'm always learning new languages."
-        ]
+        body: "For the last 4 years I've been focused on improving the payment experience for hundreds of users, building high-concurrency, event-driven systems made to stay reliable and predictable, even under heavy load. Most of my code lives in Python and Django, leaning on hexagonal architecture and DDD to keep things clean — and off the clock you'll find me deep in side projects, picking up new languages just for the fun of it."
     },
 
     projects: {
-        heading: 'Featured projects',
         items: [
             {
-                name: 'TODO: Project name',
+                name: 'Ledger Core',
                 description:
-                    'TODO: One or two sentences on what it does and why it matters.',
-                tags: ['TODO: tech', 'TODO: tech'],
-                url: 'https://github.com/ljesparis/'
+                    'Event-sourced payments ledger built for correctness at scale.',
+                tags: ['python', 'kafka', 'ddd'],
+                href: '#'
+            },
+            {
+                name: 'Pulse',
+                description:
+                    'Real-time messaging gateway handling millions of events a day.',
+                tags: ['django', 'rabbitmq', 'websockets'],
+                href: '#'
             }
         ]
+    },
+
+    writing: {
+        items: [
+            {
+                title: 'Keeping distributed services coherent',
+                date: '03·26',
+                href: '#'
+            },
+            {
+                title: 'Why hexagonal architecture feels like home',
+                date: '01·26',
+                href: '#'
+            },
+            {
+                title: 'Idempotency in payment systems',
+                date: '11·25',
+                href: '#'
+            }
+        ]
+    },
+
+    footer: {
+        builtWith: 'built with love'
     }
 };

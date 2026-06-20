@@ -2,7 +2,13 @@ export interface ProjectItem {
     name: string;
     description: string;
     tags: string[];
-    url: string;
+    href: string;
+}
+
+export interface WritingItem {
+    title: string;
+    date: string;
+    href: string;
 }
 
 export interface SiteContent {
@@ -11,17 +17,16 @@ export interface SiteContent {
         description: string;
     };
     switchToLabel: string;
-    hero: {
-        name: string;
-        role: string;
-        tagline: string;
-    };
     about: {
-        heading: string;
-        paragraphs: string[];
+        body: string;
     };
     projects: {
-        heading: string;
         items: ProjectItem[];
+    };
+    writing: {
+        items: WritingItem[];
+    };
+    footer: {
+        builtWith: string;
     };
 }

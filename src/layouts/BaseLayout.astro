@@ -1,15 +1,10 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import SiteNav from '../components/SiteNav.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
-import { SOCIAL_LINKS } from '../consts';
-import {
-    getLangFromUrl,
-    getContent,
-    getLocalizedPath,
-    LOCALE_TAGS
-} from '../i18n/utils';
+import { getLangFromUrl, getContent, LOCALE_TAGS } from '../i18n/utils';
 
 export interface Props {
     title?: string;
@@ -21,59 +16,69 @@ const t = getContent(lang);
 
 const title = Astro.props.title ?? t.meta.title;
 const description = Astro.props.description ?? t.meta.description;
-
-const homePath = lang === 'en' ? '/' : '/es/';
-
-const otherLang = lang === 'en' ? 'es' : 'en';
-const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
 ---
 
 <!DOCTYPE html>
 <html lang={LOCALE_TAGS[lang]}>
-  <head>
-    <BaseHead title={title} description={description} lang={lang} />
-  </head>
-  <body>
-    <header>
-      <nav class="site-nav">
-        <a class="wordmark" href={homePath}>ljesparis</a>
-        <div class="nav-meta">
-          {SOCIAL_LINKS.map((link) => (
-            <a href={link.url} target="_blank" rel="noopener noreferrer me">
-              {link.title}
-            </a>
-          ))}
-          <a
-            class="lang-switch"
-            href={switchPath}
-            lang={otherLang}
-            hreflang={LOCALE_TAGS[otherLang]}
-            aria-label={`Switch language to ${t.switchToLabel}`}
-          >
-            <svg
-              class="lang-switch-globe"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M3 12h18" />
-              <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18" />
-            </svg>
-            <span class="lang-switch-code">{lang.toUpperCase()}</span>
-          </a>
+    <head>
+        <BaseHead title={title} description={description} lang={lang} />
+    </head>
+    <body>
+        <div class="page">
+            <div class="scanline" aria-hidden="true"></div>
+            <div class="glow" aria-hidden="true"></div>
+            <div class="container">
+                <SiteNav />
+                <main>
+                    <slot />
+                </main>
+                <Footer />
+            </div>
         </div>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <Footer />
-    <GoogleAnalytics />
-  </body>
+        <GoogleAnalytics />
+    </body>
 </html>
+
+<style>
+    .page {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        overflow: hidden;
+        background: var(--bg);
+    }
+    .scanline {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+            0deg,
+            var(--scanline) 0px,
+            var(--scanline) 1px,
+            transparent 2px,
+            transparent 4px
+        );
+    }
+    .glow {
+        position: fixed;
+        top: -160px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 520px;
+        max-width: 100vw;
+        height: 420px;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(circle, var(--glow), transparent 70%);
+        filter: blur(40px);
+        animation: pulseGlow 7s ease-in-out infinite;
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: var(--gutter) var(--gutter) 56px;
+    }
+</style>

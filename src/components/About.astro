@@ -1,0 +1,52 @@
+---
+import { getContent, type Lang } from '../i18n/utils';
+
+export interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+---
+
+<section class="about" data-reveal aria-labelledby="about-label">
+    <h2 class="label" id="about-label">
+        <span class="dot" aria-hidden="true"></span>cat about.md
+    </h2>
+    <p class="body">{t.about.body}</p>
+</section>
+
+<style>
+    .about {
+        padding: clamp(18px, 5vw, 24px);
+        margin-bottom: 40px;
+        border-radius: var(--radius-lg);
+        background: var(--surface-card);
+        border: 1px solid var(--border-card);
+        animation: revealUp 0.6s ease 0.16s both;
+    }
+    .label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--mono-muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+    .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 8px var(--accent);
+    }
+    .body {
+        font-size: 1rem;
+        line-height: 1.68;
+        color: var(--text);
+    }
+</style>

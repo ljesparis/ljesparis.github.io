@@ -1,17 +1,25 @@
 ---
-const today = new Date();
+import { getLangFromUrl, getContent } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = getContent(lang);
+const year = new Date().getFullYear();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Leonardo Esparis
+<footer class="footer">
+    &copy; {year} leonardo_esparis — {t.footer.builtWith}
+    <span class="heart" aria-hidden="true">♥</span>
 </footer>
+
 <style>
-	footer {
-		margin-top: 56px;
-		padding: 24px 0;
-		border-top: 1px solid var(--border);
-		color: var(--text-soft);
-		font-size: 0.85rem;
-		text-align: left;
-	}
+    .footer {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--footer);
+        padding-top: 18px;
+        border-top: 1px solid var(--divider);
+    }
+    .heart {
+        color: var(--heart);
+    }
 </style>
