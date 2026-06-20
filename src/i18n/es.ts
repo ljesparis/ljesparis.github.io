@@ -2,9 +2,9 @@ import type { SiteContent } from './types';
 
 export const es: SiteContent = {
     meta: {
-        title: 'Leonardo Esparis — Ingeniero de Software',
+        title: 'Leonardo Esparis — Ingeniero de Software · Python & Django',
         description:
-            'Leonardo Esparis — ingeniero de software que construye sistemas de pago fiables, de alta concurrencia y orientados a eventos en Python y Django.'
+            'Ingeniero de software con más de 4 años construyendo sistemas de alta concurrencia y orientados a eventos en Python y Django. Arquitectura hexagonal y DDD.'
     },
 
     switchToLabel: 'English',
