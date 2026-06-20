@@ -1,0 +1,15 @@
+# Leonardo Esparis
+> Software engineer specialising in high-concurrency, event-driven systems.
+
+## About
+- 4+ years building reliable, event-driven infrastructure in Python and Django
+- Hexagonal architecture and domain-driven design practitioner
+- Interests: distributed systems, event sourcing, side projects, learning new languages
+
+## Stack
+Python, Django, FastAPI, Kafka, RabbitMQ, PostgreSQL, Redis, Docker
+
+## Links
+- Homepage: https://ljesparis.com/
+- GitHub: https://github.com/ljesparis/
+- LinkedIn: https://www.linkedin.com/in/leoesparis/

@@ -29,13 +29,24 @@ const ogLocaleAlternate = LANGS.filter((l) => l !== lang).map(
 
 const personSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: PERSON.name,
-    jobTitle: PERSON.jobTitle,
-    url: Astro.site?.href,
-    email: `mailto:${PERSON.email}`,
-    image: imageURL.href,
-    sameAs: [PERSON.linkedin, PERSON.github]
+    '@type': 'ProfilePage',
+    dateModified: new Date().toISOString().split('T')[0],
+    url: canonicalURL.href,
+    mainEntity: {
+        '@type': 'Person',
+        name: PERSON.name,
+        jobTitle: PERSON.jobTitle,
+        url: Astro.site?.href,
+        email: `mailto:${PERSON.email}`,
+        image: imageURL.href,
+        description: 'Software engineer with 4+ years building high-concurrency, event-driven systems. Specialises in Python, Django, hexagonal architecture, and domain-driven design.',
+        knowsAbout: [
+            'Python', 'Django', 'FastAPI', 'Kafka', 'RabbitMQ',
+            'PostgreSQL', 'Redis', 'Hexagonal Architecture',
+            'Domain-Driven Design', 'Event Sourcing', 'Docker'
+        ],
+        sameAs: [PERSON.linkedin, PERSON.github]
+    }
 };
 ---
 
@@ -45,7 +56,6 @@ const personSchema = {
 <meta name="theme-color" content="#04070a" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" href="/favicon.ico" />
-<meta name="generator" content={Astro.generator} />
 
 <link rel="canonical" href={canonicalURL} />
 
