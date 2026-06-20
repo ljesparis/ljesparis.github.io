@@ -2,13 +2,15 @@
 import '@fontsource-variable/space-grotesk/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/global.css';
-import { PERSON, SOCIAL_IMAGE } from '../consts';
+import { PERSON, SOCIAL_IMAGE, SOCIAL_IMAGE_WIDTH, SOCIAL_IMAGE_HEIGHT } from '../consts';
 import {
     getAlternateLinks,
     LOCALE_TAGS,
     LANGS,
     type Lang
 } from '../i18n/utils';
+
+declare const __LAST_MODIFIED__: string;
 
 export interface Props {
     title: string;
@@ -30,14 +32,15 @@ const ogLocaleAlternate = LANGS.filter((l) => l !== lang).map(
 const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    dateModified: new Date().toISOString().split('T')[0],
+    dateModified: __LAST_MODIFIED__,
     url: canonicalURL.href,
     mainEntity: {
+        '@id': `${Astro.site?.href}#person`,
         '@type': 'Person',
         name: PERSON.name,
         jobTitle: PERSON.jobTitle,
         url: Astro.site?.href,
-        email: `mailto:${PERSON.email}`,
+        email: PERSON.email,
         image: imageURL.href,
         description: 'Software engineer with 4+ years building high-concurrency, event-driven systems. Specialises in Python, Django, hexagonal architecture, and domain-driven design.',
         knowsAbout: [
@@ -54,8 +57,10 @@ const personSchema = {
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="color-scheme" content="dark" />
 <meta name="theme-color" content="#04070a" />
+<meta name="author" content={PERSON.name} />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="generator" content={Astro.generator} />
 
 <link rel="canonical" href={canonicalURL} />
 
@@ -74,7 +79,10 @@ const personSchema = {
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={imageURL} />
+<meta property="og:image" content={imageURL.href} />
+<meta property="og:image:width" content={String(SOCIAL_IMAGE_WIDTH)} />
+<meta property="og:image:height" content={String(SOCIAL_IMAGE_HEIGHT)} />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:locale" content={ogLocale} />
 {
     ogLocaleAlternate.map((loc) => (
@@ -86,7 +94,9 @@ const personSchema = {
 <meta name="twitter:url" content={canonicalURL} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:image" content={imageURL.href} />
+{PERSON.twitter && <meta name="twitter:site" content={`@${PERSON.twitter}`} />}
+{PERSON.twitter && <meta name="twitter:creator" content={`@${PERSON.twitter}`} />}
 
 <script
     type="application/ld+json"
