@@ -17,6 +17,9 @@ export interface SiteContent {
         description: string;
     };
     switchToLabel: string;
+    hero: {
+        tagline: string;
+    };
     about: {
         body: string;
     };
