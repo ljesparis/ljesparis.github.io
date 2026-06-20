@@ -1,5 +1,13 @@
 ---
 import { PERSON } from '../consts';
+import { getLangFromUrl, getContent, type Lang } from '../i18n/utils';
+
+export interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
 const [firstName, ...rest] = PERSON.name.split(' ');
 const lastName = rest.join(' ');
 ---
@@ -9,6 +17,8 @@ const lastName = rest.join(' ');
         $ whoami<span class="cursor" aria-hidden="true"></span>
     </p>
     <h1 class="name">{firstName}<br />{lastName}</h1>
+    <p class="role">{PERSON.jobTitle}</p>
+    <p class="tagline">&gt; {t.hero.tagline}</p>
 </header>
 
 <style>
@@ -23,7 +33,7 @@ const lastName = rest.join(' ');
         font-size: 0.8125rem;
         color: var(--accent);
         letter-spacing: 0.05em;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
         text-shadow: 0 0 6px rgba(63, 224, 143, 0.4);
     }
     .cursor {
@@ -44,5 +54,20 @@ const lastName = rest.join(' ');
         letter-spacing: -0.02em;
         color: var(--heading);
         text-shadow: 0 0 20px rgba(63, 224, 143, 0.35);
+        margin-bottom: 18px;
+    }
+    .role {
+        font-family: var(--font-mono);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--accent-bright);
+        letter-spacing: 0.03em;
+        margin-bottom: 10px;
+    }
+    .tagline {
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        letter-spacing: 0.01em;
     }
 </style>

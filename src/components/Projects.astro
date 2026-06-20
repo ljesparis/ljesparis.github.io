@@ -17,12 +17,16 @@ const t = getContent(lang);
                 <a class="card" href={project.href}>
                     <div class="head">
                         <span class="name">{project.name}</span>
-                        <span class="arrow" aria-hidden="true">
-                            →
-                        </span>
+                        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
                     </div>
                     <p class="desc">{project.description}</p>
-                    <div class="tags">{project.tags.join(' · ')}</div>
+                    <div class="tags">
+                        {project.tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
                 </a>
             ))
         }
@@ -32,7 +36,7 @@ const t = getContent(lang);
 <style>
     .projects {
         margin-bottom: 40px;
-        animation: revealUp 0.6s ease 0.24s both;
+        animation: revealUp 0.6s ease 0.32s both;
     }
     .label {
         font-family: var(--font-mono);
@@ -46,46 +50,63 @@ const t = getContent(lang);
     .list {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
     .card {
         display: block;
-        padding: 18px;
+        padding: 20px;
         border-radius: var(--radius);
         background: var(--surface-item);
         border: 1px solid var(--border-item);
         text-decoration: none;
-        transition: border-color 0.2s ease, background 0.2s ease;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
     .card:hover {
         border-color: var(--border-item-hover);
         background: var(--surface-item-hover);
+        transform: translateY(-1px);
     }
     .head {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
-        margin-bottom: 7px;
+        align-items: center;
+        margin-bottom: 8px;
     }
     .name {
-        font-size: 1.125rem;
+        font-size: 1.0625rem;
         font-weight: 600;
         color: var(--heading-strong);
     }
     .arrow {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
         color: var(--accent);
+        opacity: 0.6;
+        flex-shrink: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover .arrow {
+        opacity: 1;
+        transform: translate(2px, -2px);
     }
     .desc {
         font-size: 0.875rem;
         line-height: 1.55;
         color: var(--text-muted);
-        margin-bottom: 11px;
+        margin-bottom: 14px;
     }
     .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .tag {
         font-family: var(--font-mono);
-        font-size: 0.75rem;
+        font-size: 0.6875rem;
         color: var(--mono-muted);
+        background: rgba(63, 224, 143, 0.06);
+        border: 1px solid rgba(63, 224, 143, 0.12);
+        border-radius: 4px;
+        padding: 3px 8px;
+        letter-spacing: 0.03em;
     }
 </style>

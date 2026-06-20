@@ -9,6 +9,10 @@ export const en: SiteContent = {
 
     switchToLabel: 'Español',
 
+    hero: {
+        tagline: 'writing code, building things, figuring out the rest'
+    },
+
     about: {
         body: "For the last 4 years I've been focused on improving the payment experience for hundreds of users, building high-concurrency, event-driven systems made to stay reliable and predictable, even under heavy load. Most of my code lives in Python and Django, leaning on hexagonal architecture and DDD to keep things clean — and off the clock you'll find me deep in side projects, picking up new languages just for the fun of it."
     },

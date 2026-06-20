@@ -10,17 +10,5 @@ export interface Props {
 const { lang } = Astro.props;
 ---
 
-<Hero />
+<Hero lang={lang} />
 <About lang={lang} />
-
-{/*
-    Projects and Writing are ready to enable when there is real content to ship.
-    Uncomment the imports above and the blocks below; data lives in
-    src/i18n/{en,es}.ts under `projects` and `writing`.
-
-    import Projects from './Projects.astro';
-    import Writing from './Writing.astro';
-
-    <Projects lang={lang} />
-    <Writing lang={lang} />
-*/}

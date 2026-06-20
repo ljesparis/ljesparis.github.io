@@ -30,8 +30,8 @@
 	--font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo,
 		monospace;
 
-	--container: 640px;
-	--gutter: clamp(1rem, 4vw, 1.375rem);
+	--container: 700px;
+	--gutter: clamp(1rem, 4vw, 1.5rem);
 
 	--radius-sm: 6px;
 	--radius: 12px;

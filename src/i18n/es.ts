@@ -9,6 +9,10 @@ export const es: SiteContent = {
 
     switchToLabel: 'English',
 
+    hero: {
+        tagline: 'escribiendo código, construyendo cosas, resolviendo lo demás'
+    },
+
     about: {
         body: 'Durante los últimos 4 años me he centrado en mejorar la experiencia de pago de cientos de usuarios, construyendo sistemas de alta concurrencia y orientados a eventos, pensados para mantenerse fiables y predecibles incluso bajo mucha carga. La mayor parte de mi código vive en Python y Django, apoyándome en arquitectura hexagonal y DDD para mantenerlo limpio — y fuera del trabajo me encontrarás metido en proyectos personales, aprendiendo nuevos lenguajes solo por diversión.'
     },
