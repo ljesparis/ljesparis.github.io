@@ -53,6 +53,7 @@ const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
 <style>
     .nav {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 10px;
@@ -81,6 +82,8 @@ const switchPath = getLocalizedPath(Astro.url.pathname, otherLang);
     }
     .icon {
         display: flex;
+        padding: 7px;
+        margin: -7px;
         color: var(--accent);
         transition: color 0.2s ease;
     }
