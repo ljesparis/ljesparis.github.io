@@ -5,7 +5,7 @@ import compress from '@playform/compress';
 
 const isProd = process.env.ENV === 'PRO';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
     site: 'https://ljesparis.com/',
     compressHTML: true,
     i18n: {
@@ -37,4 +37,4 @@ export default defineConfig({
     prefetch: {
         defaultStrategy: "load"
     },
-});
+}));
