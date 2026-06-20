@@ -3,9 +3,9 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import compress from '@playform/compress';
 
-const isProd = process.env.ENV === 'PRO';
+const isProd = process.env.NODE_ENV === 'production';
 
-export default defineConfig(({ command }) => ({
+export default defineConfig({
     site: 'https://ljesparis.com/',
     compressHTML: true,
     i18n: {
@@ -37,4 +37,4 @@ export default defineConfig(({ command }) => ({
     prefetch: {
         defaultStrategy: "load"
     },
-}));
+});
