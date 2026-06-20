@@ -4,36 +4,55 @@ export const es: SiteContent = {
     meta: {
         title: 'Leonardo Esparis — Ingeniero de Software',
         description:
-            'Leonardo Esparis, ingeniero de software con más de 8 años construyendo backends: sistemas distribuidos, altamente concurrentes y orientados a eventos en Python.'
+            'Leonardo Esparis — ingeniero de software que construye sistemas de pago fiables, de alta concurrencia y orientados a eventos en Python y Django.'
     },
 
     switchToLabel: 'English',
 
-    hero: {
-        name: 'Leonardo Esparis',
-        role: 'Ingeniero de Software',
-        tagline:
-            'Construyo sistemas que tienen que mantener la calma bajo presión, y disfruto cada parte del oficio.'
-    },
-
     about: {
-        heading: 'Sobre mí',
-        paragraphs: [
-            'Soy Leonardo, ingeniero de software con más de 8 años creando backends de los que estoy orgulloso. Donde mejor me siento es en sistemas altamente concurrentes y orientados a eventos: servicios distribuidos en AWS que intercambian mensajes mediante Kafka o RabbitMQ y donde todo tiene que mantenerse coherente.',
-            'La mayor parte de mi trabajo vive en Python y Django, con verdadera debilidad por el diseño limpio y mantenible (DDD y arquitectura hexagonal me resultan terreno conocido). Parte de mi carrera la he dedicado a sistemas de pagos, donde la corrección importa de verdad. Me encanta construir y siempre estoy aprendiendo nuevos lenguajes.'
-        ]
+        body: 'Durante los últimos 4 años me he centrado en mejorar la experiencia de pago de cientos de usuarios, construyendo sistemas de alta concurrencia y orientados a eventos, pensados para mantenerse fiables y predecibles incluso bajo mucha carga. La mayor parte de mi código vive en Python y Django, apoyándome en arquitectura hexagonal y DDD para mantenerlo limpio — y fuera del trabajo me encontrarás metido en proyectos personales, aprendiendo nuevos lenguajes solo por diversión.'
     },
 
     projects: {
-        heading: 'Proyectos destacados',
         items: [
             {
-                name: 'TODO: Nombre del proyecto',
+                name: 'Ledger Core',
                 description:
-                    'TODO: Una o dos frases sobre qué hace y por qué importa.',
-                tags: ['TODO: tech', 'TODO: tech'],
-                url: 'https://github.com/ljesparis/'
+                    'Ledger de pagos basado en event sourcing, diseñado para ser correcto a escala.',
+                tags: ['python', 'kafka', 'ddd'],
+                href: '#'
+            },
+            {
+                name: 'Pulse',
+                description:
+                    'Pasarela de mensajería en tiempo real que maneja millones de eventos al día.',
+                tags: ['django', 'rabbitmq', 'websockets'],
+                href: '#'
             }
         ]
+    },
+
+    writing: {
+        items: [
+            {
+                title: 'Mantener coherentes los servicios distribuidos',
+                date: '03·26',
+                href: '#'
+            },
+            {
+                title: 'Por qué la arquitectura hexagonal se siente como en casa',
+                date: '01·26',
+                href: '#'
+            },
+            {
+                title: 'Idempotencia en sistemas de pago',
+                date: '11·25',
+                href: '#'
+            }
+        ]
+    },
+
+    footer: {
+        builtWith: 'hecho con cariño'
     }
 };
