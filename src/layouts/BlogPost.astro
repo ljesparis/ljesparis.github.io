@@ -7,14 +7,16 @@ import { getLangFromUrl, LOCALE_TAGS } from '../i18n/utils';
 
 export interface Props {
     title: string;
+    seoTitle?: string;
     description: string;
     pubDate: string | Date;
     image?: string;
 }
 
 const fm = ((Astro.props as any).frontmatter ?? Astro.props) as Props;
-const { title, description, pubDate, image } = fm;
+const { title, seoTitle, description, pubDate, image } = fm;
 const lang = getLangFromUrl(Astro.url);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const dateObj = (() => {
     if (pubDate instanceof Date && !isNaN(pubDate.getTime())) return pubDate;
     const s = String(pubDate ?? '');
@@ -22,12 +24,26 @@ const dateObj = (() => {
     return isNaN(d.getTime()) ? new Date() : d;
 })();
 const isoDate = dateObj.toISOString().split('T')[0];
+
+const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: description,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    url: canonicalURL.href,
+    inLanguage: lang === 'en' ? 'en-US' : 'es-ES',
+    author: { '@type': 'Person', '@id': 'https://ljesparis.com/#person' },
+    publisher: { '@type': 'Person', '@id': 'https://ljesparis.com/#person' },
+};
 ---
 
 <!DOCTYPE html>
 <html lang={LOCALE_TAGS[lang]}>
     <head>
-        <BaseHead title={`${title} — Leonardo Esparis`} description={description} lang={lang} image={image} />
+        <BaseHead title={seoTitle ?? `${title} — Leonardo Esparis`} description={description} lang={lang} image={image} ogType="article" />
+        <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
     </head>
     <body>
         <div class="page">

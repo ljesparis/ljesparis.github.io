@@ -10,9 +10,10 @@ const t = getContent(lang);
 ---
 
 <section class="about" data-reveal aria-labelledby="about-label">
-    <h2 class="label" id="about-label">
+    <h2 class="sr-only" id="about-label">About</h2>
+    <p class="label" aria-hidden="true">
         <span class="dot" aria-hidden="true"></span>cat about.md
-    </h2>
+    </p>
     <p class="body">{t.about.body}</p>
 </section>
 
