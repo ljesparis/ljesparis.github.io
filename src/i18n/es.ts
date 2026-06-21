@@ -39,19 +39,9 @@ export const es: SiteContent = {
     writing: {
         items: [
             {
-                title: 'Mantener coherentes los servicios distribuidos',
-                date: '03·26',
-                href: '#'
-            },
-            {
-                title: 'Por qué la arquitectura hexagonal se siente como en casa',
-                date: '01·26',
-                href: '#'
-            },
-            {
-                title: 'Idempotencia en sistemas de pago',
-                date: '11·25',
-                href: '#'
+                title: 'Los post-mortems son geniales (y aquí te cuento por qué deberías amarlos también)',
+                date: '06·26',
+                href: '/es/blog/post-mortems-are-awesome'
             }
         ]
     },

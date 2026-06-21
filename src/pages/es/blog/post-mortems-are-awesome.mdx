@@ -1,0 +1,119 @@
+---
+layout: ../../../layouts/BlogPost.astro
+title: "Los post-mortems son geniales (y aquí te cuento por qué deberías amarlos también)"
+seoTitle: "Los post-mortems son geniales — Análisis de causa raíz"
+description: "Los post-mortems no son papeleo tras una caída. Bien hechos, son la conversación más honesta que puede tener tu equipo — y la mejor defensa contra repetir el mismo incidente."
+pubDate: "2026-06-21"
+---
+
+Algo sale mal. Una API empieza a devolver 500s a las 2am. Un pago falla silenciosamente durante dos horas antes de que alguien se dé cuenta. Un deploy activa el feature flag equivocado en producción. Corres a arreglarlo, lo resuelves, respiras.
+
+Y entonces llega la pregunta que nadie quiere responder: *¿qué hacemos ahora?*
+
+La mayoría de los equipos siguen adelante. El incidente se olvida. El fix llega a producción. La vida continúa — hasta que el mismo tipo de problema aparece tres meses después con un disfraz ligeramente distinto.
+
+Los equipos que no repiten sus errores hacen una cosa diferente: lo escriben todo, se sientan (o entran a una llamada), y descubren *por qué ocurrió de verdad*. Eso es un post-mortem. Y me he convencido de que es uno de los hábitos más valiosos que puede cultivar un equipo de ingeniería.
+
+## El marco sin culpa que hace funcionar todo lo demás
+
+Antes que nada: un post-mortem fracasa en el momento en que se convierte en una búsqueda de culpables.
+
+La premisa entera es que los sistemas fallan, no las personas. Los ingenieros toman decisiones basándose en la información disponible en ese momento. Si alguien hizo un deploy un viernes por la tarde y algo se rompió, la pregunta no es "¿por qué hizo el deploy el viernes?" — sino "¿por qué el sistema permitía que un deploy de viernes fuera arriesgado en primer lugar?" y "¿por qué no lo atrapamos antes de que llegara a producción?"
+
+Los post-mortems sin culpa no son para eximirle a nadie de responsabilidad. Son para arreglar el *sistema* de modo que ninguna decisión individual pueda tumbar producción. Cuando la gente se siente segura para hablar con honestidad, obtienes la historia real. Cuando se siente juzgada, obtienes una versión sanitizada que no ayuda a nadie.
+
+Esto merece repetirse: si los post-mortems en tu equipo se sienten como evaluaciones de desempeño disfrazadas, no van a funcionar. Arregla eso primero.
+
+## Por qué ocurrió: la causa raíz rara vez es lo primero que encuentras
+
+El error más común en los post-mortems es detenerse demasiado pronto en el análisis de causa raíz.
+
+La primera respuesta casi siempre es un síntoma. "Una variable de entorno mal configurada hizo que el servicio se conectara a la base de datos equivocada." Ok — *¿por qué* estaba mal configurada? "El script de deploy no la validaba." ¿Por qué no la validaba? "No teníamos un test para esa ruta." ¿Por qué no? "Porque añadimos esa variable hace seis meses y nunca actualizamos el checklist de deploy."
+
+Esa última respuesta sí es útil. Ahora puedes arreglar el checklist, añadir un paso de validación, escribir el test. La variable de entorno no era la causa raíz — era el último eslabón de una cadena.
+
+Una técnica útil aquí es la de los [Cinco Por Qués](https://es.wikipedia.org/wiki/Los_cinco_%C2%BFPor_qu%C3%A9%3F): pregunta "por qué" cinco veces seguidas. Parece casi demasiado simple, pero te obliga a ir más allá de la narrativa superficial a la que la mayoría acude por defecto. No buscas el momento en que las cosas salieron mal — buscas la *brecha* en tu sistema, tu proceso o tus herramientas que hizo posible ese momento.
+
+**Categorías de causa raíz que vale la pena explorar explícitamente:**
+
+- **Error humano** — Alguien hizo algo inesperado. ¿Por qué esa acción era posible? ¿Por qué no se detectó?
+- **Brecha en el proceso** — Faltó un paso o no se siguió. ¿Por qué el proceso no lo previno?
+- **Fallo de herramientas** — Un sistema no alertó, no bloqueó, no lo capturó. ¿Por qué no?
+- **Debilidad de diseño** — La arquitectura hacía posible ese modo de fallo. ¿Qué suposición se violó?
+- **Fallo de comunicación** — El contexto no se compartió entre equipos. ¿Por qué no llegó?
+
+Buscas la causa raíz más *accionable* dados tus recursos actuales — pero sé honesto sobre si el fix resuelve el problema estructural o solo la causa próxima. A veces "añadir una puerta de validación al proceso de deploy" es suficiente; otras veces es un parche sobre un problema arquitectónico más profundo que volverá a aparecer.
+
+## Cuándo ocurrió: el impacto empieza por la detección
+
+Saber *cuándo* ocurrió algo no es solo una cuestión de timestamps. Se trata de entender tres momentos distintos:
+
+1. **¿Cuándo empezó el fallo?** — El momento exacto en que el sistema entró en un estado incorrecto.
+2. **¿Cuándo se detectó?** — ¿Cuándo lo notó alguien o algo?
+3. **¿Cuándo se mitigó?** — ¿Cuándo dejó de afectar a los usuarios?
+
+La brecha entre (1) y (2) es tu **MTTD** (Mean Time To Detect) — qué tan ciegos estabas. La brecha entre (2) y (3) es tu **MTTR** (Mean Time To Recover) — qué tan rápido puede actuar tu equipo bajo presión. Ambos números te dicen algo específico sobre dónde invertir.
+
+Un lag de detección largo suele significar que tu monitorización o alertas son incompletas. Un tiempo de respuesta largo suele indicar que tus runbooks no son claros, tu rotación de guardia no está funcionando, o el problema era genuinamente difícil de diagnosticar.
+
+Escribir el "cuándo" con precisión — hasta el minuto si puedes — también ayuda a reconstruir lo que realmente ocurrió versus lo que la gente *creía* que estaba pasando. La memoria humana bajo estrés no es fiable. Los logs son más fiables que la memoria — consúltalos primero. (Los logs también pueden fallar — rotación, niveles de log insuficientes, diferencias de zona horaria — pero siguen siendo un punto de partida mucho mejor que los recuerdos.)
+
+## La línea de tiempo: el eje vertebral del post-mortem
+
+La línea de tiempo es donde un post-mortem demuestra su valor. Es una reconstrucción cronológica de todo lo que ocurrió, desde la primera señal de problemas hasta que se dio el todo despejado.
+
+Una buena línea de tiempo tiene esta pinta:
+
+| Hora (UTC) | Evento |
+|---|---|
+| 02:14 | La tasa de error en `/payments` supera el umbral del 5% |
+| 02:17 | PagerDuty dispara alerta, se avisa al ingeniero de guardia |
+| 02:24 | El ingeniero se conecta e inicia la investigación |
+| 02:31 | Identificado pico en timeouts de conexión a la base de datos |
+| 02:38 | Hipótesis: pool de conexiones agotado tras el deploy |
+| 02:45 | Se revierte el deploy — la tasa de error cae inmediatamente |
+| 02:52 | Tasa de error vuelve a la línea base, incidente resuelto |
+| 03:10 | Causa raíz confirmada: query nueva sin índice, causando full table scans bajo carga |
+
+Lo que hace útil a la línea de tiempo no son solo los eventos — son las *decisiones* e *hipótesis* tomadas en el camino. "El ingeniero sospechó X, probó Y, lo descartó" tiene valor. Muestra el razonamiento, no solo el resultado. Ayuda a futuros respondedores a entender qué caminos no seguir.
+
+Construye la línea de tiempo a partir de los logs, no de la memoria. Abre tus dashboards de monitorización, mensajes de Slack, historial de deploys, logs de actividad de tu herramienta de guardia. Coselos juntos. Casi siempre encontrarás algo sorprendente — una brecha entre cuándo crees que notaste algo y cuándo los logs dicen que empezó.
+
+## Puntos de acción: la parte que realmente cambia las cosas
+
+Aquí es donde la mayoría de los post-mortems mueren silenciosamente. Escribes el incidente, listas algunos puntos de acción, y seis semanas después nadie recuerda quién era responsable de qué.
+
+Los puntos de acción necesitan tres cosas para sobrevivir al contacto con la realidad:
+
+**1. Un responsable específico.** No "el equipo" ni "ingeniería". Una persona con nombre y apellido. Los equipos diluyen la responsabilidad; los individuos pueden rendir cuentas.
+
+**2. Una fecha límite.** No "pronto" ni "en el próximo sprint". Una fecha en el calendario. Mételo en un ticket. Ponlo en el plato de alguien. Si no se rastrea en algún lugar que la gente mire cada día, no se hará.
+
+**3. Un resultado claro.** No "mejorar las alertas". Algo como "añadir una alerta en PagerDuty que se dispare cuando el uso del pool de conexiones supere el 80% durante 2 minutos, responsable @yo, fecha límite el próximo viernes". Eso es un ticket. Es rastreable. Se hizo o no se hizo.
+
+Los puntos de acción suelen caer en algunas categorías:
+
+- **Detección**: ¿Cómo detectamos esto más rápido la próxima vez? (Nuevas alertas, mejores dashboards, monitores sintéticos)
+- **Respuesta**: ¿Cómo respondemos mejor? (Runbooks, simulacros de runbook, rutas de escalada más claras, mejores herramientas)
+- **Prevención**: ¿Cómo evitamos que ocurra del todo? (Fixes en el código, cambios arquitectónicos, puertas de proceso, tests automatizados)
+- **Comunicación**: ¿Cómo mantenemos mejor informados a los stakeholders? (Actualizaciones en la status page, canales internos de incidentes, plantillas de escalada)
+
+Los ítems de detección y respuesta suelen ser las victorias más rápidas. Los de prevención tienden a ser más complejos y de mayor duración. Está bien tener ambos — solo sé honesto sobre el plazo de cada uno.
+
+Una cosa más: no todos los puntos de acción tienen que ser grandes. A veces la respuesta correcta es "añadir un comentario a esta función explicando por qué no se puede llamar en horas pico". A veces es "añadir esto al checklist de deploy". Las acciones pequeñas que sí se hacen valen más que las ambiciosas que no llegan a ningún sitio.
+
+## Lo que se acumula con el tiempo
+
+El retorno real de los post-mortems no es visible en ningún incidente individual. Se acumula.
+
+Después de una docena de post-mortems, empiezan a aparecer patrones. Notarás que la monitorización de tu base de datos ha sido la causa raíz cuatro veces. Que los deploys los viernes tienen una tasa de incidentes más alta. Que tu rotación de guardia tiene una brecha consistente entre las 2am y las 4am. Estos patrones son invisibles a menos que los estés escribiendo.
+
+Los mejores equipos de ingeniería que he visto tratan su archivo de post-mortems como una base de conocimiento. Los ingenieros nuevos leen post-mortems anteriores para entender cómo se comporta el sistema bajo presión. Cuando ocurre un nuevo incidente, alguien dice "esto se parece al problema del pool de conexiones de marzo" — y tiene razón, porque leyó ese post-mortem.
+
+Ese es el ROI real: memoria institucional que no vive en la cabeza de una sola persona, que sobrevive a la rotación del equipo, que enseña los modos de fallo del sistema a todos los que se incorporan.
+
+---
+
+Los post-mortems no son sobre el pasado. Son sobre hacer el futuro ligeramente más predecible que el presente. Y en sistemas complejos, eso vale mucho.
+
+Escribe la línea de tiempo. Encuentra la causa raíz. Entrega los puntos de acción. Luego léelo de nuevo en seis meses y mira lo que te perdiste.

@@ -1,0 +1,119 @@
+---
+layout: ../../layouts/BlogPost.astro
+title: "Post-Mortems Are Awesome (And Here's Why You Should Love Them Too)"
+seoTitle: "Post-Mortems Are Awesome: Root Cause & Blameless Teams"
+description: "Post-mortems aren't just incident paperwork. Done right, they're the most honest team conversation — and the best defense against repeating the same mistake."
+pubDate: "2026-06-21"
+---
+
+Something goes wrong. An API starts throwing 500s at 2am. A payment fails silently for two hours before anyone notices. A deploy flips the wrong feature flag in production. You scramble, fix it, breathe again.
+
+And then comes the question nobody wants to answer: *what do we do next?*
+
+Most teams move on. The incident fades. The fix ships. Life continues — until the same class of problem shows up three months later wearing a slightly different hat.
+
+The teams that don't repeat themselves do one thing differently: they write it all down, sit in a room (or a call), and figure out *why it really happened*. That's a post-mortem. And I've come to think it's one of the most valuable habits an engineering team can build.
+
+## The Blameless Frame That Makes Everything Else Work
+
+Before anything else: a post-mortem fails the moment it becomes about blame.
+
+The whole premise is that systems fail, not people. Engineers make decisions based on the information available to them at the time. If someone deployed on a Friday afternoon and something broke, the question isn't "why did they deploy on Friday" — it's "why did the system allow a Friday deploy to be risky in the first place?" and "why didn't we catch this before it hit production?"
+
+Blameless post-mortems aren't about letting people off the hook. They're about fixing the *system* so that no single person's judgment call can take down production. When people feel safe talking honestly, you get the real story. When they feel judged, you get a sanitized version that doesn't actually help anyone.
+
+This matters enough to say twice: if post-mortems in your team feel like performance reviews in disguise, they won't work. Fix that first.
+
+## Why It Happened: The Root Cause is Rarely the First Thing You Find
+
+The most common mistake in post-mortems is stopping too early on root cause analysis.
+
+The first answer is almost always a symptom. "A misconfigured environment variable caused the service to connect to the wrong database." Ok — *why* was the variable misconfigured? "The deploy script didn't validate it." Why didn't it validate it? "We didn't have a test for that path." Why not? "Because we added that variable six months ago and never updated the deploy checklist."
+
+That last answer is actually useful. Now you can fix the checklist, add a validation step, write a test. The environment variable wasn't the root cause — it was the final trigger in a chain.
+
+A useful technique here is the [Five Whys](https://en.wikipedia.org/wiki/Five_whys): ask "why" five times in succession. It sounds almost too simple, but it forces you past the surface-level narrative most people default to. You're not looking for the moment things went wrong — you're looking for the *gap* in your system, your process, or your tooling that made that moment possible.
+
+**Root cause categories worth asking about explicitly:**
+
+- **Human error** — Someone did something unexpected. Why was that action possible? Why wasn't it caught?
+- **Process gap** — A step was missing or not followed. Why didn't the process prevent this?
+- **Tooling failure** — A system didn't alert, didn't block, didn't catch it. Why not?
+- **Design weakness** — The architecture made this failure mode possible. What assumption was violated?
+- **Communication breakdown** — Context wasn't shared across teams. Why wasn't it?
+
+You're looking for the most *fixable* root cause given your current constraints — but be honest about whether the fix addresses the structural problem or just the proximate cause. Sometimes "add a validation gate to the deploy process" is enough; sometimes it's a band-aid over a deeper architectural gap that will surface again.
+
+## When It Happened: Impact Starts With Detection
+
+Knowing *when* something happened is not just a timestamp question. It's about understanding three distinct moments:
+
+1. **When did the failure start?** — The actual moment the system entered a bad state.
+2. **When was it detected?** — When did someone or something notice?
+3. **When was it mitigated?** — When did user impact stop?
+
+The gap between (1) and (2) is your **MTTD** (Mean Time To Detect) — how blind you were. The gap between (2) and (3) is your **MTTR** (Mean Time To Recover) — how fast your team can act under pressure. Both numbers tell you something specific about where to invest.
+
+A long detection lag usually means your monitoring or alerting is incomplete. A long response time usually means your runbooks are unclear, your on-call rotation isn't working, or the problem was genuinely hard to diagnose.
+
+Writing down the "when" with precision — down to the minute if you can — also helps reconstruct what was actually happening versus what people *thought* was happening. Human memory under stress is unreliable. The logs are more reliable than memory — pull them first. (Logs fail too — rotation, missing log levels, timezone mismatches — but they're still a better starting point than recollections.)
+
+## The Timeline: The Spine of the Post-Mortem
+
+The timeline is where a post-mortem earns its keep. It's a chronological reconstruction of everything that happened, from the first sign of trouble to the all-clear.
+
+A good timeline looks something like this:
+
+| Time (UTC) | Event |
+|---|---|
+| 02:14 | Error rate on `/payments` crosses 5% threshold |
+| 02:17 | PagerDuty alert fires, on-call engineer paged |
+| 02:24 | Engineer logs in, begins investigation |
+| 02:31 | Identified spike in DB connection timeouts |
+| 02:38 | Hypothesis: connection pool exhausted after deploy |
+| 02:45 | Rolled back deploy — error rate drops immediately |
+| 02:52 | Error rate back to baseline, incident resolved |
+| 03:10 | Root cause confirmed: new query missing index, causing full table scans under load |
+
+What makes timelines useful isn't just the events — it's the *decisions* and *hypotheses* made along the way. "Engineer suspected X, tried Y, ruled it out" is valuable. It shows the reasoning, not just the outcome. It helps future responders understand what paths not to take.
+
+Build the timeline from logs, not memory. Pull your monitoring dashboards, your Slack messages, your deploy history, your on-call tool's activity log. Stitch them together. You'll almost always find something surprising — a gap between when you thought you noticed something and when the logs say it started.
+
+## Action Items: The Part That Actually Changes Things
+
+Here's where most post-mortems die a quiet death. You write up the incident, list some action items, and six weeks later nobody can remember who owned what.
+
+Action items need three things to survive contact with reality:
+
+**1. A specific owner.** Not "the team" or "engineering." One named person. Teams diffuse accountability; individuals can be held to it.
+
+**2. A due date.** Not "soon" or "next sprint." A calendar date. Slip it onto a ticket. Put it on someone's plate. If it's not tracked somewhere people look every day, it won't get done.
+
+**3. A clear outcome.** Not "improve alerting." Something like "add a PagerDuty alert that fires when connection pool usage exceeds 80% for 2 minutes, owned by @me, due next Friday." That's a ticket. That's trackable. That's done or not done.
+
+Action items typically fall into a few categories:
+
+- **Detection**: How do we catch this faster next time? (New alerts, better dashboards, synthetic monitors)
+- **Response**: How do we respond better? (Runbooks, runbook drills, clearer escalation paths, better tooling)
+- **Prevention**: How do we stop it from happening at all? (Code fixes, architectural changes, process gates, automated tests)
+- **Communication**: How do we keep stakeholders in the loop better? (Status page updates, internal incident channels, escalation templates)
+
+The detection and response items are often the quickest wins. Prevention items tend to be more complex and longer-running. It's fine to have both — just be honest about the timeline for each.
+
+One more thing: not every action item needs to be big. Sometimes the right answer is "add a comment to this function explaining why it can't be called during peak hours." Sometimes it's "add this to the deploy checklist." Small actions that actually ship are worth more than ambitious ones that don't.
+
+## What Compounds Over Time
+
+The real return on post-mortems isn't visible in any single incident. It compounds.
+
+After a dozen post-mortems, patterns start to emerge. You'll notice that your database monitoring has been the root cause four times. That deploys on Fridays have a higher incident rate. That your on-call rotation has a consistent gap between 2am and 4am. These patterns are invisible unless you're writing them down.
+
+The best engineering teams I've seen treat their post-mortem archive as a knowledge base. New engineers read old post-mortems to understand how the system behaves under pressure. When a new incident happens, someone says "this feels like the connection pool thing from March" — and they're right, because they read that post-mortem.
+
+That's the actual ROI: institutional memory that doesn't live in one person's head, that survives attrition, that teaches the system's failure modes to everyone who joins.
+
+---
+
+Post-mortems aren't about the past. They're about making the future slightly more predictable than the present. And in complex systems, that's worth a lot.
+
+Write the timeline. Find the root cause. Ship the action items. Then read it again in six months and see what you missed.

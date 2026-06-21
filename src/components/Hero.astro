@@ -16,7 +16,7 @@ const lastName = rest.join(' ');
     <p class="whoami">
         $ whoami<span class="cursor" aria-hidden="true"></span>
     </p>
-    <h1 class="name">{firstName}<br />{lastName}</h1>
+    <h1 class="name">{firstName}<br />{lastName}<span class="sr-only">, {PERSON.jobTitle}</span></h1>
     <p class="role">{PERSON.jobTitle}</p>
     <p class="tagline">&gt; {t.hero.tagline}</p>
 </header>
