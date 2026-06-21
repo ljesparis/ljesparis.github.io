@@ -1,6 +1,7 @@
 ---
 import Hero from './Hero.astro';
 import About from './About.astro';
+import Writing from './Writing.astro';
 import type { Lang } from '../i18n/utils';
 
 export interface Props {
@@ -12,3 +13,4 @@ const { lang } = Astro.props;
 
 <Hero lang={lang} />
 <About lang={lang} />
+<Writing lang={lang} />

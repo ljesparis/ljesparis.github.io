@@ -39,19 +39,9 @@ export const en: SiteContent = {
     writing: {
         items: [
             {
-                title: 'Keeping distributed services coherent',
-                date: '03·26',
-                href: '#'
-            },
-            {
-                title: 'Why hexagonal architecture feels like home',
-                date: '01·26',
-                href: '#'
-            },
-            {
-                title: 'Idempotency in payment systems',
-                date: '11·25',
-                href: '#'
+                title: 'Post-mortems are awesome (and here\'s why you should love them too)',
+                date: '06·26',
+                href: '/blog/post-mortems-are-awesome'
             }
         ]
     },
